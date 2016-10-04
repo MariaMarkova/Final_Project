@@ -58,6 +58,7 @@ ALTER TABLE posts ADD year_of_manufacture YEAR(4) not null;
 ALTER TABLE posts ADD price DECIMAL(2,2) not null;
 ALTER TABLE posts ADD description_post varchar(255) not null;
 ALTER TABLE posts ADD id_user INT UNSIGNED NOT NULL;
+ALTER TABLE posts ADD main_picture varchar(255) not null;
 
 #alter table pictures
 ALTER TABLE pictures ADD url_pic varchar(255) not null;

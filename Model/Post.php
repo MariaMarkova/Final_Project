@@ -3,6 +3,7 @@ namespace Model;
 
 class Post
 {
+	protected $id;
 	protected $title;
 	protected $year;
 	protected $price;
@@ -16,6 +17,7 @@ class Post
 		$this->price = $price;
 		$this->description = $description;
 		$this->pictures = [];
+		
 	}
 	
 	public function getTitle()
@@ -46,5 +48,20 @@ class Post
 	public function setPictures($array)
 	{
 		$this->pictures = $array;
+	}
+	
+	public function getMainPicture()
+	{
+		return $this->pictures[0];
+	}
+	
+	public function getId()
+	{
+		return $this->id;
+	}
+	
+	public function setId($value)
+	{
+		$this->id = $value;
 	}
 }

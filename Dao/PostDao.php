@@ -2,39 +2,56 @@
 namespace Dao;
 
 use Model\Post;
-
+require '..\db\DBConnection.php';
 class PostDao 
 {
 
 	public static function addPost(Post $post)
 	{
-		$result = [
-				'success' => false,
-				'message' => 'User is not registered! ',
-		];
 		try
 		{
-			$connection = DBConnection::getInstance();
-			$queryInsert = "INSERT INTO employees
-							(first_name, last_name, job_id, employee_id)
-							VALUES (:fisrt_name, :last_name, :job_id, :employee_id);";
+			$connection = \DBConnection::getInstance();
+			$queryInsert = "INSERT INTO posts
+							(title_post, year_of_manufacture, price, description_post,id_user,	main_picture)
+							VALUES (:title, :year, :price, :description,:userId,:mainPicture);";
 			$stm = $connection->prepare($queryInsert);
 			$sucess = $stm->execute([
-					'fisrt_name' => $employee->getFirstName(),
-					'last_name' => $employee->getLastName(),
-					'employee_id' => $employee->getEmployeeId(),
-					'job_id' => $employee->getJobId(),
+					'title' => $post->getTitle(),
+					'year' => $post->getYear(),
+					'price' => $post->getPrice(),
+					'description' => $post->getDescription(),
+					'userId' => 1,
+					'mainPicture' => $post->getMainPicture()
 			]);
-			$message = ($sucess) ? "User is registered! " : "User is not registered! ";
+			$postId = $post->setId($connection->lastInsertId());
+		
 				
-			$result = [
-					'success' => $sucess,
-					'message' => $message,
-			];
+			
 		} catch (\PDOException $e) {
-			$result['message'] = $e->getMessage();
+			echo  $e->getMessage();
 		}
+		
 	
-		return $result;
+	}
+	
+	public static function addPictures($array , $id)
+	{
+		
+		try
+		{
+			$connection = \DBConnection::getInstance();
+			$insertQuery =  "INSERT INTO pictures
+							(url_pic,id_post) VALUES (:url,:id);";
+			foreach ($array as $key => $picture)
+			{
+				$stm=$connection->prepare($insertQuery);
+				$sucess = $stm->execute([
+						'url' => $picture,
+						'id' =>$id
+				]);
+			}
+		}catch (\PDOException $e) {
+			echo  $e->getMessage();
+		}
 	}
 }
