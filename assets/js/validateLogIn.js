@@ -32,7 +32,7 @@ function captureForm(e) {
 		document.getElementById('username').style.borderColor = '';
 		document.getElementById('pass').style.borderColor = '';
 		
-		Ajax.request('POST', 'assets/php/login.php', true, function (response) {
+		Ajax.request('POST', 'Controller/logIn.php', true, function (response) {
 			//console.log('response   --->' + response);
 			
 			data = JSON.parse(response);
@@ -40,7 +40,7 @@ function captureForm(e) {
 			if ( !data.validUser) {
 				alert('Wrong password or username');
 			}else{
-				window.location.href = 'index.php';
+				window.location.href = 'index.php?controller=base&action=showBaseView';
 			}
 			//console.log(data);	
 			

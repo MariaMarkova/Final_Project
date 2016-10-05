@@ -1,7 +1,7 @@
 <?php
-//namespace assets\Model;
+namespace Model;
 
-class User 
+class Admin 
 {    
     private $first_name; 
     private $last_name;
@@ -21,4 +21,7 @@ class User
         
     }
     
+    public function getFirstName(){
+    	return $this->first_name;
+    }
 }
