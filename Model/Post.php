@@ -52,7 +52,7 @@ class Post
 	
 	public function getMainPicture()
 	{
-		return $this->pictures[0];
+		return isset($this->pictures[0]) ?  $this->pictures[0] : "";
 	}
 	
 	public function getId()

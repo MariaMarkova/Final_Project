@@ -7,12 +7,18 @@ $title = isset($_POST['title']) ? $_POST['title'] : "";
 echo $title;
 use Model\Post;
 use Dao\PostDao;
+use View\MakePost;
 require '..\Model/Post.php';
 require '..\Dao\PostDao.php';
+require '..\View\MakePost.php';
+
 class PostController
 {
 	public function makePost()
 	{
+		
+		$view = new MakePost();
+		$view->render();
 		
 		$errors = [];
 			$title = isset($_POST['title']) ? $_POST['title'] : "";
@@ -26,6 +32,7 @@ class PostController
 			
 			$resultPost = PostDao::addPost($post);
 			$resultPic = PostDao::addPictures($post->getPictures(), $post->getId());
+			//send notification funct here
 			
 			
 	}
@@ -38,7 +45,12 @@ class PostController
 			}
 		}
 		
+		if(isset($_FILES['file'])) {
 		$filesCount = count($_FILES['file']['tmp_name']);
+		}else {
+			$filesCount = 0;
+		}
+	
 		$images = [];
 		
 		for($i = 0; $i < $filesCount ; $i++)
