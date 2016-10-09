@@ -19,4 +19,24 @@ class AdminDao
 	
 		return $statement->fetchAll(PDO::FETCH_ASSOC);
 	}
+	
+	public function updateAdminInfo($firstName, $lastName, $username, $email, $telephone, $idAdmin){
+		
+		try {
+			$connection = DBConnection::getInstance();
+			$updateAdmin = 'UPDATE admins SET first_name = (?) ,
+										last_name = (?),
+										telephone = (?),
+										email = (?),
+										username = (?)
+				        WHERE id_admin = (?)';
+			
+			$statement = $connection->prepare($updateAdmin);
+			
+			$statement->execute(array($firstName, $lastName, $telephone, $email, $username, $idAdmin));
+		} catch (PDOException $e){
+			echo $e->getMessage();
+		}
+		
+	}
 }

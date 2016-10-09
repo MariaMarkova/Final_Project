@@ -1,8 +1,8 @@
 #create schema
-CREATE SCHEMA `test` DEFAULT CHARACTER SET utf8 ;
+CREATE SCHEMA `prevozvach` DEFAULT CHARACTER SET utf8 ;
 
 #create table 'users'
-CREATE TABLE `test`.`users` (
+CREATE TABLE `prevozvach`.`users` (
   `id_user` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(255) NOT NULL,
   `last_name` VARCHAR(255) NOT NULL,
@@ -17,28 +17,28 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 #create table 'devices'
-CREATE TABLE `test`.`devices` (
+CREATE TABLE `prevozvach`.`devices` (
   `id_device` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id_device`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 #create table 'posts'
-CREATE TABLE `test`.`posts` (
+CREATE TABLE `prevozvach`.`posts` (
   `id_post` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id_post`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 #create table 'pictures'
-CREATE TABLE `test`.`pictures` (
+CREATE TABLE `prevozvach`.`pictures` (
   `id_picture` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id_picture`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 #view all from tables
-select * from users;
+select * from admins;
 select * from posts;
 select * from pictures;
 select * from devices;

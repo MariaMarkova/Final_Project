@@ -26,7 +26,7 @@ class LoginView
 							<form class=\"form-signin\" action=\"\" />       
 						    	<h2 class=\"form-signin-heading\">Please login</h2>
 						    	
-						    	<p id=\"error\" class=\"error hidden\">Wrong email or password!</p>
+						    	<p id=\"error\" class=\"error hidden\">All fields are required!</p>
 								<input type=\"text\" class=\"form-control\" id=\"username\" name=\"username\" placeholder=\"Username\" required autofocus />
 								<input type=\"password\" class=\"form-control\" id=\"pass\" name=\"password\" placeholder=\"Password\" required />    
 								
