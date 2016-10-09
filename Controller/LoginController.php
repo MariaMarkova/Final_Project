@@ -1,6 +1,8 @@
 <?php
 namespace Controller;
-session_start();
+if(!isset($_SESSION)){
+    session_start();
+}
 
 use View\LoginView;
 use Model\Admin;

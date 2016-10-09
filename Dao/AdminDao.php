@@ -22,16 +22,21 @@ class AdminDao
 	
 	public function updateAdminInfo($firstName, $lastName, $username, $email, $telephone, $idAdmin){
 		
-		$connection = DBConnection::getInstance();
-		$updateAdmin = 'UPDATE admins SET first_name = (?) ,
+		try {
+			$connection = DBConnection::getInstance();
+			$updateAdmin = 'UPDATE admins SET first_name = (?) ,
 										last_name = (?),
-										telephone = (?), 
-										email = (?), 
+										telephone = (?),
+										email = (?),
 										username = (?)
 				        WHERE id_admin = (?)';
-	
-		$statement = $connection->prepare($updateAdmin);
-	
-		$statement->execute(array($firstName, $lastName, $telephone, $email, $username, $idAdmin));
+			
+			$statement = $connection->prepare($updateAdmin);
+			
+			$statement->execute(array($firstName, $lastName, $telephone, $email, $username, $idAdmin));
+		} catch (PDOException $e){
+			echo $e->getMessage();
+		}
+		
 	}
 }
