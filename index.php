@@ -29,5 +29,5 @@ if (class_exists($controllerClassName))
 
 if ($fileNotFound) {
 	//return header 404
-	echo '<h1>Error 404. Page NOT Found.</h1>';
+	//echo 'not found';
 }
