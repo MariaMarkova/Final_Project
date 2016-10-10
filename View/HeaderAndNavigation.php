@@ -19,14 +19,14 @@ class HeaderAndNavigation
 				
 				    <title>Prevozvach</title>
 				
+					<!-- Reset CSS -->
+					<link href="assets/css/reset.css" rel="stylesheet">
+
 				    <!-- Bootstrap Core CSS -->
 				    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
 				
 				    <!-- Custom CSS -->
 				    <link href="assets/css/sb-admin.css" rel="stylesheet">
-				
-				 	<!-- Custom CSS -->
-				    <link href="assets/css/search.css" rel="stylesheet">
 				    
 				    <!-- Custom Fonts -->
 				    <link href="assets/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">';
