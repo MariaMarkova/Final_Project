@@ -13,15 +13,15 @@ class PostDao
 		{
 			$connection = DBConnection::getInstance();
 			$queryInsert = "INSERT INTO posts
-							(title_post, year_of_manufacture, price, description_post,id_user,	main_picture)
-							VALUES (:title, :year, :price, :description,:userId,:mainPicture);";
+							(title_post, year_of_manufacture, price, description_post,id_admin,	main_picture)
+							VALUES (:title, :year, :price, :description,:adminId,:mainPicture);";
 			$stm = $connection->prepare($queryInsert);
 			$sucess = $stm->execute([
 					'title' => $post->getTitle(),
 					'year' => $post->getYear(),
 					'price' => $post->getPrice(),
 					'description' => $post->getDescription(),
-					'userId' => 1,
+					'adminId' => 1,
 					'mainPicture' => $post->getMainPicture()
 			]);
 			$postId = $post->setId($connection->lastInsertId());
