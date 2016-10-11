@@ -1,6 +1,9 @@
 <?php
 
 namespace View;
+if(!isset($_SESSION)){
+    session_start();
+}
 
 class HeaderAndNavigation
 {
@@ -52,14 +55,14 @@ class HeaderAndNavigation
 				                    <span class="icon-bar"></span>
 				                    <span class="icon-bar"></span>
 				                </button>
-				                <span class="navbar-brand" href="#">Prevozvach</span>
+				                <span class="navbar-brand">Prevozvach</span>
 				            </div>
 				            <!-- Top Menu Items -->
 				            <ul class="nav navbar-right top-nav">
 				               
 				                <li class="dropdown">
 				                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>  ' . 
-										$nameAdmin . ' <b class="caret"></b></a>
+										$_SESSION['admin']->getFirstName() . ' <b class="caret"></b></a>
 				                    <ul class="dropdown-menu">
 				                        <li>
 				                            <a href="index.php?controller=profile&action=renderProfileForm"><i class="fa fa-fw fa-user"></i> Profile</a>

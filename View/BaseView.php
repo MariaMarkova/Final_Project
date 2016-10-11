@@ -122,6 +122,10 @@ class BaseView
 		
 		echo '<!-- Custom CSS -->
  				    <link href="assets/css/search.css" rel="stylesheet">
+				<!-- AJAX -->
+ 				    <script type="text/javascript" src="assets/js/ajax.js"></script>
+				<!-- Custom JS -->
+ 				    <script type="text/javascript" src="assets/js/search.js"></script>
 			  ';
 		
 		//TODO admin name
@@ -134,14 +138,17 @@ class BaseView
 								<h3>Welcome</h3>
 								
 								<div class="search" >
-								    <form class="form-search form-inline">
+								    <form id="form_search" class="form-search" method="post" action="" >
 								        <div class="input-append">
-								            <input type="text" class="search-query" placeholder="Search..." />
-								            <button type="submit" class="btn btn-primary">Search</button>
+											
+								       		<input type="text" name="input-search" id="input-search" class="search-query" placeholder="Search..." required/>
+								            <button type="button" id="btn-search" class="btn btn-primary">Search</button>
+										</div>
 								    </form>
-								</div>												
-								
-				            </div>';
+								</div>	
+				            </div>
+				
+							<p id="result-search"></p>';
 		
 		$loadPage->renderAssets();
 		

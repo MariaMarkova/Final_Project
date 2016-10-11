@@ -2,8 +2,8 @@
 namespace db;
 use \PDO;
 
+//require_once '../config.php';
 require_once '../config.php';
-
 class DBConnection {
 	
 	private static $instances;

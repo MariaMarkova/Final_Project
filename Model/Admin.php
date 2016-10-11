@@ -87,4 +87,8 @@ class Admin
     	
     	AdminDao::updateAdminInfo($firstName, $lastName, $username, $email, $telephone, $idAdmin);
     }
+    
+    public function search($params){
+    	return AdminDao::search($params);
+    }
 }

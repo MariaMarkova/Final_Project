@@ -5,6 +5,7 @@ if(!isset($_SESSION)){
 }
 
 use View\ProfileView;
+use Model\Admin;
 
 class ProfileController
 {

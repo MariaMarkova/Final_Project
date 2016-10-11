@@ -184,7 +184,7 @@ class ProfileView
 										<p id="error_first_name" class="error hidden">This field is required!</p>
 								    	<label for="first_name">First Name</label>
 										<input type="text" class="form-control-profile" id="first_name" name="first_name"
-											value = ' .   htmlentities($this->adminFirstName, ENT_QUOTES, 'UTF-8') . ' /> 
+											value = ' .  htmlentities($this->adminFirstName, ENT_QUOTES, 'UTF-8') . ' /> 
 											
 										<p id="error_last_name" class="error hidden">This field is required!</p>
 										<label for="last_name">Last Name</label>
