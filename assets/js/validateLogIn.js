@@ -38,7 +38,11 @@ function captureForm(e) {
 			data = JSON.parse(response);
 			
 			if ( !data.validUser) {
-				alert('Wrong password or username');
+				//alert('Wrong password or username');
+				document.getElementById('error').className = 'error';
+				document.getElementById('error').innerHTML = 'Wrong username or password!';
+				document.getElementById('username').style.borderColor = '#DC143C';
+				document.getElementById('pass').style.borderColor = '#DC143C';
 			}else{
 				window.location.href = 'index.php?controller=base&action=showBaseView';
 			}

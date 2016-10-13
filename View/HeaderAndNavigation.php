@@ -55,7 +55,7 @@ class HeaderAndNavigation
 				                    <span class="icon-bar"></span>
 				                    <span class="icon-bar"></span>
 				                </button>
-				                <span class="navbar-brand">Prevozvach</span>
+				                <span id="title" class="navbar-brand">AvtovozBG</span>
 				            </div>
 				            <!-- Top Menu Items -->
 				            <ul class="nav navbar-right top-nav">
@@ -93,6 +93,9 @@ class HeaderAndNavigation
 				                    <li>
 				                        <a href="#"><i class="fa fa-fw fa-desktop"></i> View Posts</a>
 				                    </li>
+								    <li>
+				                        <a href="index.php?controller=device&action=showUsersInfo"><i class="fa fa-fw fa-users"></i> Users</a>
+				                    </li>
 				                </ul>
 				            </div>
 				            <!-- /.navbar-collapse -->
@@ -101,6 +104,7 @@ class HeaderAndNavigation
 				
 				   ';
 	}
+	
 	
 	public function renderAssets(){
 		echo '

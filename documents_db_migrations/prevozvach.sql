@@ -43,6 +43,7 @@ select * from posts;
 select * from pictures;
 select * from devices;
 
+SELECT concat(first_name, ' ', last_name) as `name`, telephone as phone FROM admins;
 #do not execute this changes
 /*ALTER TABLE users ADD username varchar(255) unique;
 ALTER TABLE users MODIFY email varchar(255) unique;

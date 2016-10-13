@@ -146,6 +146,11 @@ class BaseView
 										</div>
 								    </form>
 								</div>	
+				
+								<div class="search new">
+									
+								</div>
+				
 				            </div>
 				
 							<p id="result-search"></p>';

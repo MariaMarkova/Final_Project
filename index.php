@@ -18,11 +18,11 @@ if (class_exists($controllerClassName))
 	if (method_exists($contoller, $methodName)) {
 		$contoller->$methodName();
 	} else {
-		//echo 'method not found';
+		echo 'method not found';
 		$fileNotFound = true;
 	}
 } else {
-	//echo 'class not found';
+	echo 'class not found';
 	$fileNotFound = true;
 }
 

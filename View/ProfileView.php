@@ -167,7 +167,7 @@ class ProfileView
 				<!--JS -->
 					<script type="text/javascript" src="assets/js/ajax.js"></script>
 					<script type="text/javascript" src="assets/js/changePersonalInfo.js"></script>
-					<link rel="stylesheet" type="text/css" href="assets/css/logIn.css" />';
+			 ';
 		
 		$loadPage->renderHeader($this->adminFirstName);
 		$loadPage->renderNav();

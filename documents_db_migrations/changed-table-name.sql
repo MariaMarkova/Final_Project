@@ -20,3 +20,16 @@ FROM posts WHERE title_post LIKE 'ford';*/
 #alter table devices 
 ALTER TABLE devices ADD `device` varchar(255) not null;
 ALTER TABLE devices ADD `token` varchar(255) not null;
+
+#delete token colm form devices
+ALTER TABLE devices DROP COLUMN token;
+
+#device colm must be unique too
+ALTER TABLE devices
+MODIFY COLUMN `device` varchar(255) not null unique;
+
+#added name and email of a user
+ALTER TABLE devices ADD `email` varchar(255);
+ALTER TABLE devices ADD `name` varchar(255);
+
+SELECT title_post, year_of_manufacture, price, description_post FROM posts;
