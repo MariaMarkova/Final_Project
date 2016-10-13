@@ -1,40 +1,80 @@
 <?php
 namespace View;
 
+require 'HeaderAndNavigation.php';
+
 class MakePost
 {
 	public function render() {
-		echo "<!DOCTYPE html>
-					<html>
-					<head>
-					<meta charset=\"UTF-8\">
-					<title>Insert title here</title>
-					</head>
-					<style>
-					label {
-					display:block;
-					}
-					</style>
-					<body>
-					
+		$loadPage = new HeaderAndNavigation();
+		
+		$loadPage->renderExternals();
+		
+		echo '<!-- profile -->
+				  <link href="assets/css/makepost.css" rel="stylesheet">
+				<!--JS -->
+					<script type="text/javascript" src="assets/js/validatePost.js"></script>	
+				';
+		
+		$loadPage->renderHeader('admin');
+		$loadPage->renderNav();
+		
+		
+		echo "
+					<div id='form-div'>
 					<form enctype=\"multipart/form-data\" method='post'  action=''>
+					<p id='error_title' class='error'>This field is required!</p> 
 							<label for='title'>Title</label>
 						 <input type ='text' name='title' id='title'>
 						 
-						  <label for='year'>Year</label>
+						<p id='error_brand' class='error'>This field is required!</p>
+								<label for='brand'>Brand</label>
+						 <input type ='text' name='brand' id='brand'>
+								
+						<p id='error_model' class='error'>This field is required!</p> 		
+								<label for='model'>Model</label>
+						 <input type ='text' name='model' id='model'>
+								
+						<p id='error_color' class='error'>This field is required!</p> 
+						
+								<label for='color'>Color</label>
+						 <input type ='text' name='color' id='color'>
+								
+							<p id='error_km' class='error'>This field is required!</p> 	
+							<p id='error_km_num' class='error'>Field must be numeric!</p> 	
+						
+								<label for='km'>Kilometres</label>
+						 <input type='text'  name='km'  id='km'>
+								
+							<p id='error_hp' class='error'>This field is required!</p> 	
+							<p id='error_hp_num' class='error'>Field must be numeric!</p> 	
+						
+								<label for='hp'>Horse Power</label>
+						 <input type='text'  name='hp'  id='hp'>
+								
+								<p id='error_year' class='error'>This field is required!</p> 	
+						<p id='error_year_valid' class='error'>Year is not valid</p> 	
+							<p id='error_year_num' class='error'>Field must be numeric!</p> 	
+						
+						 <label for='year'>Year</label>
 						 <input type ='text' name='year' id='year'>
+						
+								<p id='error_price' class='error'>This field is required!</p> 	
+							<p id='error_price_num' class='error'>Field must be numeric!</p> 	
+						
 						  <label for='price'>Price</label>
 						 <input type ='text' name='price' id='price'>
+								
 						  <label for='description'>Description</label>
-						 <input type ='text' name='description' id='description'>
+						 <textarea  name='description' id='description'> </textarea>
 						 
 						 	 <label for='Files'>Add Pics</label>
 						 
-						 <input type=\"file\" name=\"file[]\" id=\"fileField\" multiple=\"multiple\"/>
-							<button type=\"submit\">Send</button>
+						 <input type=\"file\" name=\"file[]\" id=\"fileField\" multiple=\"multiple\" accept=\"image/*\"/>
+							<button id= \"send-button\" type=\"submit\">Send</button>
 					
-							</form>
-					</body>
-					</html>";
+							</form>";
+				
+		$loadPage->renderAssets();
 	}
 }

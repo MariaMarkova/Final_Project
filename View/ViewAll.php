@@ -1,21 +1,56 @@
 <?php
 
 namespace View;
+use View\HeaderAndNavigation;
+require 'HeaderAndNavigation.php';
+
 
 class ViewAll {
 	
-	public function render($data)
+	protected $posts;
+	
+	public function __construct(){
+		$this->posts = [];
+	}
+	
+	public function setPosts($post) {
+		$this->posts = $post;
+		
+	}
+	
+	public function renderShowAll()
 	{
+		$loadPage = new HeaderAndNavigation();
 		
+		$loadPage->renderExternals();
 		
-		$count = count($data);
-		for ($i = 0; $i < $count; $i++)
+		echo '<!-- profile -->
+				  <link href="assets/css/showallposts.css" rel="stylesheet">
+				<!--JS -->
+					<link rel="stylesheet" type="text/css" href="assets/css/logIn.css" />';
+		
+		$loadPage->renderHeader('admin');
+		$loadPage->renderNav();
+		$this->initPictures();
+		$loadPage->renderAssets();
+	}
+	
+	public function initPictures()
+	{
+
+		$count = count($this->posts);
+		
+		for ($i = 0; $i < $count ; $i++)
 		{
-			$id = $data[$i]['id_post'];
-			$title = $data[$i]['title_post'];
+			$id = $this->posts[$i]['id_post'];
+			$title = $this->posts[$i]['title_post'];
+			$url = $this->posts[$i]['main_picture'];
 			
-			echo "<a href =' " . "ShowPostController.php?id=" . $id ." '> $title </a>" . "<br>" ;
-			echo PHP_EOL;
+			echo "	<div class=\"post-div\" style=\"background-image:url(' "   . $url . " ')\" onclick=\"window.location=' " . "index.php?controller=ShowPost&action=showPost&id=" . $id ." '\">
+					<a href =' " . "index.php?controller=ShowPost&action=showPost&id=" . $id ." '> $title </a>
+					
+					
+					</div> ";
 					
 		}
 		

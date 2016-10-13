@@ -1,0 +1,26 @@
+@CHARSET "UTF-8";
+
+label{
+	display:block
+}
+
+#form-div {
+	margin-left:40%;
+	margin-top:5%;
+}
+
+#send-button {
+	color:#eee;
+	margin-top:7px;
+	background:#222;
+	margin-left:7%;
+	width:65px;
+	height:35px;
+	
+}
+
+.error {
+	display:none;
+	
+	color:red;
+}

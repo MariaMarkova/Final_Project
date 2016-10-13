@@ -28,6 +28,5 @@ if (class_exists($controllerClassName))
 
 
 if ($fileNotFound) {
-	//return header 404
-	//echo 'not found';
+	echo 'FILE NOT FOUNDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDd';
 }
