@@ -120,6 +120,14 @@ class BaseView
 		$loadPage = new HeaderAndNavigation();
 		$loadPage->renderExternals();
 		
+		echo '<!-- Custom CSS -->
+ 				    <link href="assets/css/search.css" rel="stylesheet">
+				<!-- AJAX -->
+ 				    <script type="text/javascript" src="assets/js/ajax.js"></script>
+				<!-- Custom JS -->
+ 				    <script type="text/javascript" src="assets/js/search.js"></script>
+			  ';
+		
 		//TODO admin name
 		$loadPage->renderHeader('Petyr');
 		$loadPage->renderNav();
@@ -129,21 +137,18 @@ class BaseView
 				            <div class="container-fluid">
 								<h3>Welcome</h3>
 								
-								<h4>Search for posts</h4>
-								<div class="container-search">
-									<div class="row">
-								        <div class="span12">
-								            <form id="custom-search-form" class="form-search form-horizontal pull-right">
-								                <div class="input-append span12">
-								                    <input type="text" class="search-query" placeholder="Search">
-								                    <button type="submit" class="btn"><i class="icon-search"></i></button>
-								                </div>
-								            </form>
-								        </div>
-									</div>
-								</div>
-								
-				            </div>';
+								<div class="search" >
+								    <form id="form_search" class="form-search" method="post" action="" >
+								        <div class="input-append">
+											
+								       		<input type="text" name="input-search" id="input-search" class="search-query" placeholder="Search..." required/>
+								            <button type="button" id="btn-search" class="btn btn-primary">Search</button>
+										</div>
+								    </form>
+								</div>	
+				            </div>
+				
+							<p id="result-search"></p>';
 		
 		$loadPage->renderAssets();
 		

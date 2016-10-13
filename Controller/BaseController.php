@@ -17,6 +17,22 @@ class BaseController
 			$view = new LoginController();
 			$view->showLoginForm();
 		}
+	}
+	
+	public function search(){
+		echo 'i am in a search method';
 		
+		if(!empty($_SESSION['admin'])){
+			$userSearch = isset($_POST['input-search']) ? $_POST['input-search'] : '';
+			
+			$admin = $_SESSION['admin'];
+			
+			$result = $admin->search($userSearch);
+			
+			var_dump($result);
+		} else {
+			$view = new LoginController();
+			$view->showLoginForm();
+		}
 	}
 }

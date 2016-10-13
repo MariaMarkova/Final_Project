@@ -3,7 +3,9 @@ namespace Dao;
 
 use Model\Post;
 use db\DBConnection;
+
 /* require '..\db\DBConnection.php'; */
+
 class PostDao 
 {
 

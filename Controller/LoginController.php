@@ -52,4 +52,5 @@ class LoginController
 		
 		$this->showLoginForm();
 	}
+	
 }
