@@ -88,10 +88,10 @@ class HeaderAndNavigation
 				                        <a href="index.php?controller=base&action=showBaseView"><i class="fa fa-fw fa-home"></i> Home</a>
 				                    </li>
 				                    <li>
-				                        <a href="#"><i class="fa fa-fw fa-edit"></i> Add Post</a>
+				                        <a href="index.php?controller=Post&action=MakePost"><i class="fa fa-fw fa-edit"></i> Add Post</a>
 				                    </li>
 				                    <li>
-				                        <a href="#"><i class="fa fa-fw fa-desktop"></i> View Posts</a>
+				                        <a href="index.php?controller=ShowAll&action=ShowAll"><i class="fa fa-fw fa-desktop"></i> View Posts</a>
 				                    </li>
 								    <li>
 				                        <a href="index.php?controller=device&action=showUsersInfo"><i class="fa fa-fw fa-users"></i> Users</a>

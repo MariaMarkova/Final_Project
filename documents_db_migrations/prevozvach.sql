@@ -60,6 +60,11 @@ ALTER TABLE posts ADD price DECIMAL(2,2) not null;
 ALTER TABLE posts ADD description_post varchar(255) not null;
 ALTER TABLE posts ADD id_user INT UNSIGNED NOT NULL;
 ALTER TABLE posts ADD main_picture varchar(255) not null;
+ALTER TABLE posts ADD brand varchar(255) not null;
+ALTER TABLE posts ADD model varchar(255) not null;
+ALTER TABLE posts ADD color varchar(255) not null;
+ALTER TABLE posts ADD km INT not null;
+ALTER TABLE posts ADD hp INT not null;
 
 #alter table pictures
 ALTER TABLE pictures ADD url_pic varchar(255) not null;

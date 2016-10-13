@@ -4,8 +4,8 @@ namespace Controller;
 use Dao\PostDao;
 use View\ViewAll;
 
-require '..\Dao\PostDao.php';
-require '..\View\ViewAll.php';
+/* require '..\Dao\PostDao.php';
+require '..\View\ViewAll.php'; */
 
 class ShowAllController 
 {
@@ -14,8 +14,9 @@ class ShowAllController
 		$result = PostDao::showAll();
 		
 		$viewAll = new ViewAll();
+		$viewAll->setPosts($result);
+		$viewAll->renderShowAll();
 		
-		$viewAll->render($result);
 		
 	}
 }

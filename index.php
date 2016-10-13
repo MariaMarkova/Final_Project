@@ -5,7 +5,7 @@ require_once __DIR__ . '/autoload.php';
 
 $fileNotFound = false;
 
-//print_r($_GET);
+print_r($_GET);
 
 $controllerName = isset($_GET['controller']) ? $_GET['controller'] : 'login';
 $methodName = isset($_GET['action']) ? $_GET['action'] : 'showLoginForm';
@@ -29,5 +29,5 @@ if (class_exists($controllerClassName))
 
 if ($fileNotFound) {
 	//return header 404
-	echo '<h1>Error 404. Page NOT Found.</h1>';
+	//echo 'not found';
 }

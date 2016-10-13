@@ -3,7 +3,9 @@ namespace Dao;
 
 use Model\Post;
 use db\DBConnection;
-//require '..\db\DBConnection.php';
+
+/* require '..\db\DBConnection.php'; */
+
 class PostDao 
 {
 
@@ -13,8 +15,14 @@ class PostDao
 		{
 			$connection = DBConnection::getInstance();
 			$queryInsert = "INSERT INTO posts
-							(title_post, year_of_manufacture, price, description_post,id_admin,	main_picture)
-							VALUES (:title, :year, :price, :description,:adminId,:mainPicture);";
+							(title_post, year_of_manufacture, price, 
+							description_post,id_admin,	main_picture,
+							brand,model,color,km,hp	)
+							VALUES (:title, :year, :price,
+								:description,:adminId,:mainPicture,
+								:brand,:model,:color,:km,:hp
+					
+								);";
 			$stm = $connection->prepare($queryInsert);
 			$sucess = $stm->execute([
 					'title' => $post->getTitle(),
@@ -22,17 +30,61 @@ class PostDao
 					'price' => $post->getPrice(),
 					'description' => $post->getDescription(),
 					'adminId' => 1,
-					'mainPicture' => $post->getMainPicture()
+					'mainPicture' => $post->getMainPicture(),
+					'brand' => $post->getBrand(),
+					'model' => $post->getModel(),
+					'color' => $post->getColor(),
+					'km' => $post->getKm(),
+					'hp' => $post->getHp()
 			]);
 			$postId = $post->setId($connection->lastInsertId());
 		
 				
 			
-		} catch (\PDOException $e) {
+		} catch (PDOException $e) {
 			echo  $e->getMessage();
 		}
 		
 	
+	}
+	
+	public static function updatePost($title,$year,$price,$description,$id,$brand,$model,$color,$km,$hp) 
+	{
+		try
+		{
+			$connection = DBConnection::getInstance();
+			$updateQuery = "Update  posts
+							SET title_post = :title,
+								brand = :brand,
+								model = :model,
+								color = :color,
+								km = :km,
+								hp = :hp,
+								year_of_manufacture = :year,
+								price = :price,
+								description_post=:description
+								WHERE id_post = :id ;";
+			$stm = $connection->prepare($updateQuery);
+			$sucess = $stm->execute([
+					'title' => $title,
+					'brand' => $brand,
+					'model' =>$model,
+					'color' =>$color,
+					'km' =>$km,
+					'hp' =>$hp,
+					'year' => $year,
+					'price' => $price,
+					'description' => $description,
+					'id' => $id
+					
+			]);
+			
+		
+		
+				
+		} catch (\PDOException $e) {
+			echo  $e->getMessage();
+		}
 	}
 	
 	public static function addPictures($array , $id)
@@ -62,7 +114,7 @@ class PostDao
 		try
 		{
 			$connection = DBConnection::getInstance();
-			$selectQuery = "SELECT  id_post,title_post,price
+			$selectQuery = "SELECT  id_post,title_post,main_picture
 					FROM posts";
 			$stm = $connection->prepare($selectQuery);
 			$sucess = $stm->execute();
@@ -81,7 +133,9 @@ class PostDao
 		try 
 		{
 			$connection = DBConnection::getInstance();
-			$selectQuery = "SELECT  title_post,year_of_manufacture,price,description_post
+			$selectQuery = "SELECT  title_post,year_of_manufacture,price,
+					description_post,brand,model,color,
+					km,hp
 					FROM posts WHERE id_post = :id";
 			$stm = $connection->prepare($selectQuery);
 			$sucess = $stm->execute([
