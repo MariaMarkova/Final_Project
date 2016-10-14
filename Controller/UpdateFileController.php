@@ -5,20 +5,49 @@ use View\UpdatePostView;
 use Dao\PostDao;
 
 
-/* require '..\Dao\PostDao.php';
-require '..\View\UpdatePostView.php'; */
-class UpdateFileController
+
+if(!isset($_SESSION)){
+	session_start();
+}
+
+class UpdateFileController extends PostController
 {
 	protected $errors;
-	
+	protected $postId;
+	protected $pictures;
 	public function __construct()
 	{
 		$this->errors = [];
+		$this->postId = isset($_GET['id']) ?  $_GET['id'] : null;
+		$this->pictures = [];
 	}
+	
+	public function getPictures()
+	{
+		return $this->pictures;
+	}
+	
+	public function  setPictures($array) {
+		$this->pictures = $array;
+	}
+	
+	
+	public function getPostId()
+	{
+		return $this->postId;
+	}
+	public function setSessionId()
+	{
+		$_SESSION['postId'] = $this->postId;
+	}
+	
+	
+	
 	public function showUpdate()
 	{
-		$postId = isset($_GET['id']) ?  $_GET['id'] : null;
+		$postId = $this->postId;
 		$resultPost = PostDao::showPost($postId);
+		$resultPic = PostDao::showPostPictures($postId);
 		
 		$titleOld = $resultPost['title_post'];
 		$yearOld = $resultPost['year_of_manufacture'];
@@ -29,26 +58,41 @@ class UpdateFileController
 		$colorOld =  $resultPost['color'];
 		$kmOld =  $resultPost['km'];
 		$hpOld = $resultPost['hp'];
+		$picOld = $resultPic;
 		
 		
 		$view = new UpdatePostView($titleOld, $yearOld, $priceOld, $descriptionOld, 
-				$brandOld, $modelOld, $colorOld, $kmOld, $hpOld);
+				$brandOld, $modelOld, $colorOld, $kmOld, $hpOld,$picOld);
 		$view->renderUpdatePost();
+		$this->setSessionId($this->postId);
+		
+	
+		
+		
+		
+		
+		
 		if(!empty($_POST)) {
 		$title = isset($_POST['title']) ? $_POST['title'] : "";
-		$year = isset($_POST['year']) ? $_POST['year'] : "";
-		$price = isset($_POST['price']) ? $_POST['price'] : "";
+		$year =intval (isset($_POST['year']) ? $_POST['year'] : "");
+		$price = doubleval(isset($_POST['price']) ? $_POST['price'] : "" );
 		$description = isset($_POST['description']) ? $_POST['description'] : "" ;
 		$brand =  isset($_POST['brand']) ? $_POST['brand'] : "" ;
 		$model = isset($_POST['model']) ? $_POST['model'] : "" ;
 		$color = isset($_POST['color']) ? $_POST['color'] : "" ;
-		$km = isset($_POST['km']) ? $_POST['km'] : "" ;
-		$hp = isset($_POST['hp']) ? $_POST['hp'] : "" ;
+		$km = doubleval( isset($_POST['km']) ? $_POST['km'] : "" );
+		$hp = intval( isset($_POST['hp']) ? $_POST['hp'] : "" );
 		
 		$this->validateFields($title, $year, $price, $description, $brand, $model, $color, $km, $hp);
+		$this->validateImages();
 		
+		var_dump($this->errors);
 		if(empty($this->errors)){
+		$this->setPictures($this->manageFiles());
+		
+	
 		PostDao::updatePost($title, $year, $price, $description, $postId, $brand, $model, $color, $km, $hp);
+		PostDao::addPictures($this->getPictures(), $this->postId);
 			}
 		}
 		
@@ -129,8 +173,8 @@ class UpdateFileController
 		return $this->errors;
 	}
 	
+	
+	
+	
 }
 
-$cont = new UpdateFileController();
-$cont->showUpdate();
-var_dump($cont->getErrors());

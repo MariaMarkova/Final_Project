@@ -7,28 +7,32 @@ class UpdatePostView {
 	protected $year;
 	protected $price;
 	protected $description;
-	protected $pictures;
 	protected $postId;
 	protected $brand;
 	protected $model;
 	protected $color;
 	protected $km;
 	protected $hp;
+	protected $pictures;
 	
 	
-	public function __construct($title,$year,$price,$description,$brand,$model,$color,$km,$hp) {
+	public function __construct($title,$year,$price,$description,$brand,$model,$color,$km,$hp,$pics) {
 		
 		$this->title = $title;
 		$this->year = $year;
 		$this->price = $price;
 		$this->description = $description;
-		$this->pictures = [];
 		$this->postId = isset($_GET['id']) ? $_GET['id'] : null;
 		$this->brand = $brand;
 		$this->model = $model;
 		$this->color = $color;
 		$this->km = $km;
 		$this->hp = $hp;
+		$this->pictures=$pics;
+	}
+	
+	public function getPictures() {
+		return $this->pictures;
 	}
 	
 	public function getTitle() {
@@ -49,14 +53,19 @@ class UpdatePostView {
  		echo ' <!-- profile -->
 				  <link href="assets/css/updateposts.css" rel="stylesheet">
 				<!--JS -->
-					<script type="text/javascript" src="assets/js/validatePost.js"></script>	';
+					<script type="text/javascript" src="assets/js/validatePost.js"></script>	
+ 				<script type="text/javascript" src="assets/js/ajax.js"></script>
+ 			<script type="text/javascript" src="assets/js/removePic.js"></script>';
+ 			
  		
  		$loadPage->renderHeader('admin');
  		$loadPage->renderNav();
  		
  		echo ' <div id="form-div">
-					<form enctype=\"multipart/form-data\" method="post"  action="">
  				
+ 					<h1 id="suc" class="sucess">Update is sucessfull</h1>
+					<form enctype="multipart/form-data" method="post"  action="">
+ 					
 					<p id="error_title" class="error">This field is required!</p> 
 							<label for="title">Title</label>
 						 <input type ="text" name="title" id="title" value =" ' .   htmlentities($this->title, ENT_QUOTES, 'UTF-8') . ' ">
@@ -98,14 +107,25 @@ class UpdatePostView {
 						 		
 						  <label for="description">Description</label>
 						 <textarea  name="description" id="description"> ' .htmlentities($this->description, ENT_QUOTES, 'UTF-8') . '</textarea>
-						 <!--
-						 	 <label for="Files">Add Pics</label>
 						 
-						 <input type=\"file\" name=\"file[]\" id=\"fileField\" multiple=\"multiple\"/>
-						 		-->
-							<button id= "send-button" type="submit">Send</button>
-							</form> ';
+						 	 <label for="Files">Add New Pictures	</label>
+						 
+						
+						 <input type="file" name="file[]" id="fileFiel" multiple="multiple" accept="image/*"/>
+						 		
+							<button id="send-button" type="submit">Send</button>
+							</form> </div>';
  		
+ 		$this->renderPictures();
  		$loadPage->renderAssets();
+ 	}
+ 	
+ 	public function renderPictures()
+ 	{
+ 		$count =  count($this->pictures);
+ 		for($i = 0; $i < $count; $i++ ) {
+ 			echo "<img class='post-pics' id=' ".$i." ' src= ' "  . $this->pictures[$i]['url_pic'] . " ' . />" ;
+ 				
+ 		}
  	}
 }

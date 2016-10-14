@@ -3,6 +3,7 @@ namespace Controller;
 
 use Dao\PostDao;
 use View\ViewPost;
+use View\ErrorView;
 /* require '..\Dao\PostDao.php';
 require '..\View\ViewPost.php';
  */
@@ -11,6 +12,12 @@ class ShowPostController
 	public function showPost()
 	{
 		$postId = isset($_GET['id']) ?  $_GET['id'] : null;
+		
+		if($postId==null) {
+			$errorView = new ErrorView();
+			$errorView->render();
+			die();
+		}
 		//echo $postId;
 		$resultPost = PostDao::showPost($postId);
 		$resultPic = PostDao::showPostPictures($postId);
@@ -38,5 +45,3 @@ class ShowPostController
 	}
 }
 
-$newShow = new ShowPostController();
-var_dump($newShow->showPost());

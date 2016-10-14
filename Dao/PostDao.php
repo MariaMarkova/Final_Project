@@ -4,8 +4,8 @@ namespace Dao;
 use Model\Post;
 use db\DBConnection;
 
-/* require '..\db\DBConnection.php'; */
-
+/*  require '..\db\DBConnection.php';
+ */
 class PostDao 
 {
 
@@ -127,6 +127,23 @@ class PostDao
 		return $result;
 	}
 	
+	public static function deletePic($url,$postId)
+	{
+		try
+		{
+			$connection = DBConnection::getInstance();
+			$deleteQuery = "DELETE FROM pictures WHERE id_post = :postId AND url_pic=:url " ;
+			$stm = $connection->prepare($deleteQuery);
+			$sucess = $stm->execute([
+					"postId" => $postId,
+					"url" => $url
+	]);
+		}catch (\PDOException $e)
+		{
+			echo $e->getMessage();
+		}
+		return $sucess;
+	}
 	
 	public static function showPost($postId)
 	{
@@ -150,7 +167,7 @@ class PostDao
 		return $result;
 	}
 	
-	public function showPostPictures($postId)
+	public static function showPostPictures($postId)
 	{
 		try 
 		{
