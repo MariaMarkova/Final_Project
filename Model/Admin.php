@@ -91,4 +91,8 @@ class Admin
     public function search($params){
     	return AdminDao::search($params);
     }
+    
+    public function newSearch($brand, $model, $color, $km, $kmTo, $hp, $hpTo, $year, $yearTo, $price, $priceTo){
+    	return AdminDao::newSearch($brand, $model, $color, $km, $kmTo, $hp, $hpTo, $year, $yearTo, $price, $priceTo);
+    }
 }

@@ -77,4 +77,8 @@ class AdminDao
 			echo $e->getMessage();
 		}
 	}
+	
+	public function newSearch($brand, $model, $color, $km, $kmTo, $hp, $hpTo, $year, $yearTo, $price, $priceTo){
+		
+	}
 }

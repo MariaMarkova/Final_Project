@@ -2,13 +2,9 @@
 namespace db;
 use \PDO;
 
-<<<<<<< HEAD
-require_once 'config.php';
+//require_once 'config.php';
+require_once 'C:\xampp\htdocs\PHP_EXAMPLES\Final_Project\config.php';
 
-=======
-//require_once '../config.php';
-require_once '../config.php';
->>>>>>> 8fcf20bfd9945974bd31468fe1004a65d290289f
 class DBConnection {
 	
 	private static $instances;

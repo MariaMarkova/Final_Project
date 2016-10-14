@@ -33,3 +33,7 @@ ALTER TABLE devices ADD `email` varchar(255);
 ALTER TABLE devices ADD `name` varchar(255);
 
 SELECT title_post, year_of_manufacture, price, description_post FROM posts;
+
+#insert test subject into device
+insert into devices (device, email, name) values ('5234SD123', 'krasi@krasi.com', 'Krasimir Stoev');
+

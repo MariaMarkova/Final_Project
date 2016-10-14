@@ -10,12 +10,29 @@ if(isset($_GET['device'])){
 	$token = $_GET['device'];
 	
 	$infoAdmin = getInfoAdmin();
-	$resultPosts = getAllPostInfo();	
+	$result = getAllPostInfo();	
+	
+	for ($i = 0; $i < count($result); $i++){
+	
+		$id_post = $result[$i]['id_post'];
+		$pics = getPicForPost($id_post);
+		$countOfPics = count($pics);
+	
+		$pictures = [];
+		for($j = 0; $j < $countOfPics; $j++){
+			//$path = str_replace('\/', DIRECTORY_SEPARATOR, $pics[$j]['url_pic']);
+			//$pictures[] = __DIR__ . DIRECTORY_SEPARATOR . $path;
+			$pictures[] = $pics[$j]['url_pic'];
+		}
+		//$result[$i]['urls'] = getPicForPost($id_post);
+		$result[$i]['urls'] = $pictures;
+		//$j[$i] = $result[$i];
+	}
 	
 	//here is the msg for android
 	$msg = [
 			'contacts' => $infoAdmin,
-			'posts' => $resultPosts,
+			'posts' => $result,
 	];
 	
 	//send msg in json format

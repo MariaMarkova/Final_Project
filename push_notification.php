@@ -12,7 +12,7 @@ function send_notification ($tokens, $msg) {
 	);
 	
 	$headers = array(
-			'Authorization:key = AlzaSyCnNp92Nrb1twO6uUAulsw-kp170wdGEnM',
+			'Authorization:key = AIzaSyCnNp92Nrb1twO6uUAuIsw-kp170wdGEnM',
 	        'Content-Type: application/json'
 	);
 	
@@ -66,10 +66,19 @@ function getAllPostInfo(){
 	//get all posts from db
 	$connection = DBConnection::getInstance();
 	
-	$query = 'SELECT title_post, year_of_manufacture, price, description_post FROM posts';
+	$query = 'SELECT id_post, brand, model, hp, year_of_manufacture AS year, km, color, price, description_post AS description 
+				FROM posts ORDER BY id_post DESC';
 	$stm = $connection->prepare($query);
 	$stm->execute(array());
 	return $stm->fetchAll(PDO::FETCH_ASSOC);	
+}
+
+function getPicForPost($id_post){
+	$connection = DBConnection::getInstance();
+	$query = 'SELECT url_pic FROM pictures WHERE id_post = (?)';
+	$stm = $connection->prepare($query);
+	$stm->execute(array($id_post));
+	return $stm->fetchAll(PDO::FETCH_ASSOC);
 }
 
 function getInfoAdmin(){

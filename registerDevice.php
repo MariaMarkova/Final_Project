@@ -17,8 +17,8 @@ $resultFromInsert = false;
 if (isset($data['device'])) {
 	try {
 		$token = $data['device'];
-		$email = isset($data['email']) ? $data['email'] : '';
-		$name = isset($data['name']) ? $data['name'] : '';
+		$email = isset($data['email']) ? $data['email'] : 'No email';
+		$name = isset($data['name']) ? $data['name'] : 'No name';
 
 		$connection = DBConnection::getInstance();
 

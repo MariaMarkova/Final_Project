@@ -20,7 +20,7 @@ class HeaderAndNavigation
 				    <meta name="description" content="">
 				    <meta name="author" content="">
 				
-				    <title>Prevozvach</title>
+				    <title>AvtovozBG</title>
 				
 					<!-- Reset CSS -->
 					<link href="assets/css/reset.css" rel="stylesheet">
