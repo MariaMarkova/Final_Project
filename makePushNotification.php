@@ -12,6 +12,6 @@ function makePush(){
 	
 	$message_status = send_notification($tokens, $msg);
 	
-	//echo $message_status;
+	echo $message_status;
 	
 }

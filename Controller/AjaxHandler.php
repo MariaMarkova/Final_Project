@@ -5,10 +5,10 @@ use Dao\PostDao;
 
 class AjaxHandler {
 	
-	protected $identifier;
+	protected $data;
 	
 	public function __construct(){
-		$this->identifier = intval(isset($_POST['identifier']) ? $_POST['identifier'] : null );
+		$this->data = 0;
 	
 	}
 	

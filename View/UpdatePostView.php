@@ -124,7 +124,7 @@ class UpdatePostView {
  	{
  		$count =  count($this->pictures);
  		for($i = 0; $i < $count; $i++ ) {
- 			echo "<img class='post-pics' id=' ".$i." ' src= ' "  . $this->pictures[$i]['url_pic'] . " ' . />" ;
+ 			echo "<img class='post-pics' id=' ". $this->pictures[$i]['id_picture'] ." ' src= ' "  . $this->pictures[$i]['url_pic'] . " ' . />" ;
  				
  		}
  	}

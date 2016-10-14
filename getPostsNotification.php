@@ -6,7 +6,6 @@ require_once 'push_notification.php';
 // $data = json_decode($getdata, true);
 
 if(isset($_GET['device'])){
-	//TODO validate device
 	$token = $_GET['device'];
 	
 	$infoAdmin = getInfoAdmin();

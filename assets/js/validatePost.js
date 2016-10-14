@@ -160,15 +160,26 @@ function captureForm(e) {
 	
 	if(isNumPrice && isNumYear && isNumHp &&isNumKm && resultPrice &&  resultYear &&  resultHp &&  resultKm && 
 			resultBrand && resultTitle && resultModel && resultColor && isValidYear) {
-		document.getElementById('suc').style.display = "block";
+		//document.getElementById('suc').style.display = "block";
 		
+		Ajax.request('POST', 'Controller/handleValidatePost.php', true, function (response) {
+			//console.log('response   --->' + response);
+			
+			data = JSON.parse(response);
+			
+			if ( ) {
+				
+			}else{
+				window.location.href = 'index.php?controller=base&action=showBaseView';
+			}
+			//console.log(data);	
+			
+		}, {title: title, brand: brand, model: model, color: color, km: km, hp: hp, year: price});
 		
 	}
 	
 	/*else {
-		document.getElementById('error').className = 'error hidden';
-		document.getElementById('username').style.borderColor = '';
-		document.getElementById('pass').style.borderColor = '';
+		
 		
 		Ajax.request('POST', 'Controller/logIn.php', true, function (response) {
 			//console.log('response   --->' + response);

@@ -13,7 +13,7 @@ class ShowPostController
 	{
 		$postId = isset($_GET['id']) ?  $_GET['id'] : null;
 		
-		if($postId==null) {
+		if($postId==55) {
 			$errorView = new ErrorView();
 			$errorView->render();
 			die();

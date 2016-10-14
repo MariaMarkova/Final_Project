@@ -127,16 +127,16 @@ class PostDao
 		return $result;
 	}
 	
-	public static function deletePic($url,$postId)
+	public static function deletePic($idPicture,$postId)
 	{
 		try
 		{
 			$connection = DBConnection::getInstance();
-			$deleteQuery = "DELETE FROM pictures WHERE id_post = :postId AND url_pic=:url " ;
+			$deleteQuery = "DELETE FROM pictures WHERE id_post = :postId AND id_picture=:idPicture " ;
 			$stm = $connection->prepare($deleteQuery);
 			$sucess = $stm->execute([
 					"postId" => $postId,
-					"url" => $url
+					"idPicture" => $idPicture
 	]);
 		}catch (\PDOException $e)
 		{
@@ -172,7 +172,7 @@ class PostDao
 		try 
 		{
 			$connection = DBConnection::getInstance();
-			$selectQuery = "SELECT url_pic FROM pictures WHERE id_post = :id";
+			$selectQuery = "SELECT id_picture, url_pic FROM pictures WHERE id_post = :id";
 			$stm = $connection->prepare($selectQuery);
 			$sucess  = $stm->execute([
 					':id' => $postId
@@ -186,6 +186,26 @@ class PostDao
 		}
 		return $result;
 	}
+	
+	public static function getPictureIds($postId){
+		try
+		{
+			$connection = DBConnection::getInstance();
+			$selectQuery = "SELECT  id_picture, url_pic
+								FROM pictures WHERE id_post = :id";
+			$stm = $connection->prepare($selectQuery);
+			$sucess = $stm->execute([
+					":id" => $postId
+			]);
+				
+			$result = $stm->fetch(\PDO::FETCH_ASSOC);
+		}catch (\PDOException $e)
+		{
+			echo $e->getMessage();
+		}
+		return $result;
+	}
+	
 
 	
 }

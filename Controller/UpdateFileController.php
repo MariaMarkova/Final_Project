@@ -88,11 +88,11 @@ class UpdateFileController extends PostController
 		
 		var_dump($this->errors);
 		if(empty($this->errors)){
-		$this->setPictures($this->manageFiles());
+			$this->setPictures($this->manageFiles());			
 		
-	
-		PostDao::updatePost($title, $year, $price, $description, $postId, $brand, $model, $color, $km, $hp);
-		PostDao::addPictures($this->getPictures(), $this->postId);
+			PostDao::updatePost($title, $year, $price, $description, $postId, $brand, $model, $color, $km, $hp);
+			PostDao::addPictures($this->getPictures(), $this->postId);
+			
 			}
 		}
 		

@@ -10,6 +10,8 @@ use View\MakePost;
 require '..\Dao\PostDao.php';
 require '..\View\MakePost.php';
  */
+
+require_once 'makePushNotification.php';
 class PostController
 {
 	protected $errors;
@@ -47,6 +49,7 @@ class PostController
 			$resultPost = PostDao::addPost($post);
 			$resultPic = PostDao::addPictures($post->getPictures(), $post->getId());
 			//send notification funct here
+			makePush();
 			}
 			
 		}

@@ -10,9 +10,15 @@ require_once '../autoload.php';
 $identifier = intval(isset($_POST['identifier']) ? $_POST['identifier'] : '' );
 $postId = $_SESSION['postId'];
 
- $pictures = PostDao::showPostPictures($postId);
-PostDao::deletePic($pictures[$identifier]['url_pic'], $postId) ;
+$allPostPictures = PostDao::showPostPictures($postId);
 
+if(count($allPostPictures) > 1) {
+	
+ $pictures = PostDao::getPictureIds($postId);
+PostDao::deletePic($identifier, $postId) ;
+}else {
+	echo json_encode('failure');
+}
 
 
 
