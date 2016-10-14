@@ -1,7 +1,7 @@
 <?php
 
 namespace Controller;
-var_dump($_POST);
+
 
 use Model\Post;
 use Dao\PostDao;
@@ -36,6 +36,7 @@ class PostController
 			
 			$this->validateFields($title, $year, $price, $description, $brand, $model, $color, $km, $hp);
 			$this->validateImages();
+			
 			
 			
 			if(empty($this->errors)){

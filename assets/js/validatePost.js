@@ -61,13 +61,16 @@ function captureForm(e) {
 	
 	var data = new Date();
 	var currentYear = data.getFullYear();
+	
+	var isValidYear = true;
 
 	if(year > currentYear || year < 1930)
 		{
 		e.preventDefault();
 		document.getElementById('error_year_valid').style.display = "block";
 		document.getElementById('year').style.borderColor = '#DC143C';
-
+		
+		isValidYear = false;
 		}
 
 	
@@ -142,17 +145,26 @@ function captureForm(e) {
 		document.getElementById('hp').style.borderColor = '#DC143C';
 	}
 	
-	if(!isNumKm) {
+	if(!isNumYear) {
 		e.preventDefault();
 		document.getElementById('error_year_num').style.display = "block";
 		document.getElementById('year').style.borderColor = '#DC143C';
 	}
 	
-	if(!isNumKm) {
+	if(!isNumPrice) {
 		e.preventDefault();
 		document.getElementById('error_price_num').style.display = "block";
 		document.getElementById('price').style.borderColor = '#DC143C';
 	}
+	
+	
+	if(isNumPrice && isNumYear && isNumHp &&isNumKm && resultPrice &&  resultYear &&  resultHp &&  resultKm && 
+			resultBrand && resultTitle && resultModel && resultColor && isValidYear) {
+		document.getElementById('suc').style.display = "block";
+		
+		
+	}
+	
 	/*else {
 		document.getElementById('error').className = 'error hidden';
 		document.getElementById('username').style.borderColor = '';

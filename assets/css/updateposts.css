@@ -11,10 +11,13 @@ label{
 }
 
 #send-button {
+	display:block;
+	top:25px;
 	color:#eee;
 	margin-top:7px;
 	background:#222;
 	margin-bottom:2em;
+	margin-left:5em;
 	width:65px;
 	height:35px;
 	
@@ -24,4 +27,15 @@ label{
 	display:none;
 	
 	color:red;
+}
+
+.sucess {
+	display:none;
+	color:green;
+}
+
+.post-pics {
+	margin:25px;
+	  height:170px;
+	width:200px;
 }

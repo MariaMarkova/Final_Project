@@ -3,9 +3,18 @@ require_once 'autoload.php';
 use db\DBConnection;
 function get(){
 	$connection = DBConnection::getInstance();
-	$query = 'SELECT title_post, year_of_manufacture, price, description_post FROM posts';
+	$query = 'SELECT id_post, brand, model, hp, year_of_manufacture AS year, km, color, price, description_post AS description 
+				FROM posts ORDER BY id_post DESC';
 	$stm = $connection->prepare($query);
-	$stm->execute(array());
+	$stm->execute();
+	return $stm->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function getPicForPost($id_post){
+	$connection = DBConnection::getInstance();
+	$query = 'SELECT url_pic FROM pictures WHERE id_post = (?)';
+	$stm = $connection->prepare($query);
+	$stm->execute(array($id_post));
 	return $stm->fetchAll(PDO::FETCH_ASSOC);
 }
 
@@ -19,7 +28,29 @@ function getInfoAdmin(){
 	return $stm->fetch(PDO::FETCH_ASSOC);
 }
 
-$result = get();
+ $result = get();
+// var_dump($result[0]);
+
+//  var_dump(count(getPicForPost(1)));
+// var_dump(getPicForPost(1)[0]['url_pic']);
+
+for ($i = 0; $i < count($result); $i++){
+	
+	$id_post = $result[$i]['id_post'];	
+	$pics = getPicForPost($id_post);
+	$countOfPics = count($pics);
+	
+	$pictures = [];
+	for($j = 0; $j < $countOfPics; $j++){
+// 		$path = str_replace('\/', DIRECTORY_SEPARATOR, $pics[$j]['url_pic']);
+// 		$pictures[] = __DIR__ . DIRECTORY_SEPARATOR . $path;
+		$pictures[] = $pics[$j]['url_pic'];
+	}
+	//$result[$i]['urls'] = getPicForPost($id_post);
+	$result[$i]['urls'] = $pictures;
+	//$j[$i] = $result[$i];
+}
+
 $infoAdmin = getInfoAdmin();
 // var_dump(count($result));
 // var_dump($result);
