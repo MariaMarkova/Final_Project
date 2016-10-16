@@ -152,7 +152,7 @@ class PostDao
 			$connection = DBConnection::getInstance();
 			$selectQuery = "SELECT  title_post,year_of_manufacture,price,
 					description_post,brand,model,color,
-					km,hp
+					km,hp,reserved
 					FROM posts WHERE id_post = :id";
 			$stm = $connection->prepare($selectQuery);
 			$sucess = $stm->execute([
@@ -206,6 +206,59 @@ class PostDao
 		return $result;
 	}
 	
-
+	public static function getPostIds() 
+	{
+		try
+		{
+			$connection = DBConnection::getInstance();
+			$selectQuery = "SELECT  id_post FROM  posts";
+			$stm = $connection->prepare($selectQuery);
+			$sucess = $stm->execute();
+		
+			$result = $stm->fetchAll(\PDO::FETCH_ASSOC);
+		}catch (\PDOException $e)
+		{
+			echo $e->getMessage();
+		}
+		return $result;
+	}
+	
+	public static function updateReserved($postId)
+	{
+		try
+		{
+			$connection = DBConnection::getInstance();
+			$updateQuery = "Update  posts
+							SET reserved = :bool
+								WHERE id_post = :id ;";
+			$stm = $connection->prepare($updateQuery);
+			$sucess = $stm->execute([
+					':bool' => true,
+					'id' => $postId
+			]);
+				
+		} catch (\PDOException $e) {
+			echo  $e->getMessage();
+		}
+	}
+	
+	public static function getReserved($postId) 
+	{
+		try
+		{
+		$connection = DBConnection::getInstance();
+		$qeri = "SELECT  reserved FROM posts
+								WHERE id_post = :id ;";
+		$stm = $connection->prepare($qeri);
+		$sucess = $stm->execute([
+				'id' => $postId
+		]);
+		$result = $stm->fetch(\PDO::FETCH_ASSOC);
+		} catch (\PDOException $e) {
+			echo  $e->getMessage();
+		}
+		
+		return $result;
+	}
 	
 }

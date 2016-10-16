@@ -14,6 +14,7 @@ class MakePost
 				  <link href="assets/css/makepost.css" rel="stylesheet">
 				<!--JS -->
 					<script type="text/javascript" src="assets/js/validatePost.js"></script>	
+				
 				';
 		
 		$loadPage->renderHeader('admin');
@@ -23,9 +24,9 @@ class MakePost
 		echo "
 					<div id='form-div'>
 					<form enctype=\"multipart/form-data\" method='post'  action=''>
-					<p id='error_title' class='error'>This field is required!</p> 
+					<p id='error_title_make' class='error'>This field is required!</p> 
 							<label for='title'>Title</label>
-						 <input type ='text' name='title' id='title'>
+						 <input type ='text' name='title' id='title-make'>
 						 
 						<p id='error_brand' class='error'>This field is required!</p>
 								<label for='brand'>Brand</label>
@@ -67,9 +68,12 @@ class MakePost
 								
 						  <label for='description'>Description</label>
 						 <textarea  name='description' id='description'> </textarea>
-						 
+				
+				
+				<p id='error_file' class='error'>Add atleast 1 picture!</p> 	
+				<p id='error_file_valid' class='error'>Not valid file!</p> 		 
+				
 						 	 <label for='Files'>Add Pics</label>
-						 
 						 <input type=\"file\" name=\"file[]\" id=\"fileField\" multiple=\"multiple\" accept=\"image/*\"/>
 							<button id= \"send-button\" type=\"submit\">Send</button>
 					

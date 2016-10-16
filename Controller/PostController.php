@@ -40,7 +40,7 @@ class PostController
 			$this->validateImages();
 			
 			
-			
+			var_dump($this->errors);
 			if(empty($this->errors)){
 				
 			$post = new Post($title, $year, $price, $description, $brand, $model, $color, $km, $hp);
@@ -49,7 +49,7 @@ class PostController
 			$resultPost = PostDao::addPost($post);
 			$resultPic = PostDao::addPictures($post->getPictures(), $post->getId());
 			//send notification funct here
-			makePush();
+			//makePush();
 			}
 			
 		}
@@ -75,11 +75,14 @@ class PostController
 		for($i = 0; $i < $filesCount ; $i++)
 		{
 			$fileName = str_replace(' ' , '_' , $_FILES['file']['name'][$i]);
+			$path_parts = pathinfo($_FILES["file"]["name"][$i]);
+			$extension = $path_parts['extension'];
+			$ts = time();
 			
-			
+			//funkciq do tochka zima imeto i mu slaga timestamp
 		
-			$dest =   'assets/images/' . $fileName;
-			$path = 'assets/images/' . $fileName;
+			$dest =   'assets/images/'.  $fileName ;
+			$path = 'assets/images/' . $fileName;	
 			$images[] = $path;
 			$currentFile =  $_FILES['file']['tmp_name'][$i];
 		

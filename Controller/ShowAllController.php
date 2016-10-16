@@ -13,6 +13,8 @@ class ShowAllController
 	{
 		$result = PostDao::showAll();
 		
+		
+		
 		$viewAll = new ViewAll();
 		$viewAll->setPosts($result);
 		$viewAll->renderShowAll();
@@ -21,6 +23,6 @@ class ShowAllController
 	}
 }
 
-$showAll = new ShowAllController();
+/* $showAll = new ShowAllController();
 
-$showAll->showAll();
+$showAll->showAll(); */

@@ -75,3 +75,20 @@ ALTER TABLE posts ADD CONSTRAINT `id_user_fk` FOREIGN KEY (id_user) REFERENCES u
 
 #add fk id_user
 ALTER TABLE pictures ADD CONSTRAINT `id_post_fk` FOREIGN KEY (id_post) REFERENCES posts (id_post);
+
+#reserves
+CREATE TABLE `reserves` (
+  `id_reserve` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) NOT NULL,
+  `telepfone` VARCHAR(255) NOT NULL,
+  `email` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`id_reserve`),
+  
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+ALTER TABLE reserves ADD id_post INT UNSIGNED NOT NULL;
+
+ALTER TABLE reserves ADD CONSTRAINT `id_post_fk` FOREIGN KEY (id_post) REFERENCES posts (id_post);
+ALTER TABLE reserves ADD msg varchar(255) not null;
+

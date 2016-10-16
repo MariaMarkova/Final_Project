@@ -1,5 +1,7 @@
 <?php
 
+use View\ErrorView;
+
 require_once __DIR__ . '/autoload.php';
 //require_once __DIR__ . '/config.php';
 
@@ -28,6 +30,7 @@ if (class_exists($controllerClassName))
 
 
 if ($fileNotFound) {
-	//return header 404
-	echo '<h1>Error 404. Page NOT Found.</h1>';
+	
+	$errorView = new ErrorView();
+	$errorView->render();
 }
