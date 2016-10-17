@@ -1,7 +1,3 @@
-/**
- * 
- */
-
 document.addEventListener("DOMContentLoaded", function() {
 	 document.getElementById('send-button').addEventListener('click', captureForm, false);
   }, false);
@@ -25,23 +21,21 @@ function allowNumberOnly(string){
 	}
 }
 
+function hasExtension(inputID, exts) {
+    var fileName = document.getElementById(inputID).value;
+    return (new RegExp('(' + exts.join('|').replace(/\./g, '\\.') + ')$')).test(fileName);
+}
+
 function isEmptyFile(imgValue) {
 	if(imgValue == '') {
 		return false;
 	}
 	return true;
-}
-
-function isEmptyArray(array) {
-	if(array.length == 0) {
-		return false;
-	}
 	
-	return true;
 }
 function captureForm(e) {
 	
-	var title = document.getElementById('title-make').value;
+	var title = document.getElementById('title-update').value;
 	var brand = document.getElementById('brand').value;
 	var model = document.getElementById('model').value;
 	var color = document.getElementById('color').value;
@@ -49,10 +43,9 @@ function captureForm(e) {
 	var hp = document.getElementById('hp').value;
 	var year = document.getElementById('year').value;
 	var price = document.getElementById('price').value;
-	var files = document.getElementById("fileField").files;
-
+	var files = document.getElementById("fileNR").files;
 	
-
+	
 	var resultTitle = checkInput(title);
 	var resultBrand = checkInput(brand);
 	var resultModel = checkInput(model);
@@ -67,7 +60,6 @@ function captureForm(e) {
 	var isNumPrice  = allowNumberOnly(price);
 	var isNumYear = allowNumberOnly(year);
 	var isNumHp = allowNumberOnly(hp);
-	var resultFileContent = isEmptyArray(files);
 
 	
 	var data = new Date();
@@ -88,8 +80,8 @@ function captureForm(e) {
 	
 	if (!resultTitle){
 		e.preventDefault();
-		document.getElementById('error_title_make').style.display = "block";
-		document.getElementById('title-make').style.borderColor = '#DC143C';
+		document.getElementById('error_title_update').style.display = "block";
+		document.getElementById('title-update').style.borderColor = '#DC143C';
 	}
 	
 	if (!resultBrand){
@@ -160,12 +152,8 @@ function captureForm(e) {
 		document.getElementById('price').style.borderColor = '#DC143C';
 	}
 	
-
-	if(!resultFileContent) {
-		e.preventDefault();
-		document.getElementById('error_file').style.display = "block";
-		document.getElementById('fileField').style.borderColor = '#DC143C';
-	}
+	
+	
 	var validUpload = [];
 	for (var i = 0; i < files.length; i++){
 		var type = files[i].type;
@@ -184,16 +172,52 @@ function captureForm(e) {
 		if(validUpload.length !== 0){
 			console.log('ne sam validen');
 			e.preventDefault();
-			document.getElementById('error_file_valid').style.display = "block";
+			document.getElementById('error_extention').style.display = "block";
 		}
 	}
 	
 	
+
 	
 	if(isNumPrice && isNumYear && isNumHp &&isNumKm && resultPrice &&  resultYear &&  resultHp &&  resultKm && 
-			resultBrand && resultTitle && resultModel && resultColor && isValidYear && resultFileContent 
-			&& validUpload.length == 0) {
-		document.getElementById('suc').style.display = "block";
+			resultBrand && resultTitle && resultModel && resultColor && isValidYear && validUpload.length == 0) {
+		console.log('dolo sam');
+		
+		
+		Ajax.request('POST', 'Controller/handleValidatePost.php', true, function (response) {
+			console.log('response   --->' + response);
+			
+			data = JSON.parse(response);
+			
+			if (data['state'] == 'sucess' ) {
+				
+			//datata ot input files prashtam go i go vrashtam kato url da naprava img s nego
+				// da validiram da ima pone 1 pic 
+				// da validiram da moje da e jpeg
+
+			}else{
+					console.log('kor');				
+				
+			}
+			
+		}, {title: title, brand: brand, model: model, color: color, km: km, hp: hp, year: price});
+		
 	}
 }
-	
+	//else {
+		
+		
+/*		Ajax.request('POST', 'Controller/logIn.php', true, function (response) {
+			//console.log('response   --->' + response);
+			
+			data = JSON.parse(response);
+			
+			if ( !data.validUser) {
+				alert('Wrong password or username');
+			}else{
+				window.location.href = 'index.php?controller=base&action=showBaseView';
+			}
+			//console.log(data);	
+			
+		}, {username: username, pass: pass});
+	}*/

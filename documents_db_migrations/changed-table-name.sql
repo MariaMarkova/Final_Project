@@ -12,7 +12,7 @@ ADD CONSTRAINT `id_admin_fk` FOREIGN KEY (`id_admin`) REFERENCES `admins` (`id_a
 
 #from DECIMAL(2,2) to DECIMAL(19,2)
 ALTER TABLE posts
-MODIFY COLUMN price DECIMAL(19,2) not null;
+MODIFY COLUMN price INT not null;
 
 /*SELECT title_post, year_of_manufacture, price, description_post 
 FROM posts WHERE title_post LIKE 'ford';*/

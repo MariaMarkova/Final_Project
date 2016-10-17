@@ -3,6 +3,9 @@ namespace Controller;
 
 use View\UpdatePostView;
 use Dao\PostDao;
+use Interfaces\AllPostsTrait;
+use View\ErrorView;
+use Interfaces\IGetPostCount;
 
 
 
@@ -10,16 +13,26 @@ if(!isset($_SESSION)){
 	session_start();
 }
 
-class UpdateFileController extends PostController
+class UpdateFileController extends PostController implements IGetPostCount
 {
 	protected $errors;
 	protected $postId;
 	protected $pictures;
+	protected $proceed;
+	protected $isEmptyFile;
+	protected $isValidFile;
+	
+	use AllPostsTrait;
+	
 	public function __construct()
 	{
 		$this->errors = [];
 		$this->postId = isset($_GET['id']) ?  $_GET['id'] : null;
 		$this->pictures = [];
+		$this->isValidFile = [] ;
+		$this->isEmptyFile = false;
+		$this->ids = [] ;
+		
 	}
 	
 	public function getPictures()
@@ -41,13 +54,26 @@ class UpdateFileController extends PostController
 		$_SESSION['postId'] = $this->postId;
 	}
 	
+
+	
 	
 	
 	public function showUpdate()
 	{
 		$postId = $this->postId;
+		
+		$this->getAllIds();
+	 	if(!in_array($postId,$this->ids)) {
+			$view = new ErrorView();
+			$view->render();
+			die();
+		} 
+		
 		$resultPost = PostDao::showPost($postId);
 		$resultPic = PostDao::showPostPictures($postId);
+		
+		
+		
 		
 		$titleOld = $resultPost['title_post'];
 		$yearOld = $resultPost['year_of_manufacture'];
@@ -67,11 +93,6 @@ class UpdateFileController extends PostController
 		$this->setSessionId($this->postId);
 		
 	
-		
-		
-		
-		
-		
 		if(!empty($_POST)) {
 		$title = isset($_POST['title']) ? $_POST['title'] : "";
 		$year =intval (isset($_POST['year']) ? $_POST['year'] : "");
@@ -86,12 +107,14 @@ class UpdateFileController extends PostController
 		$this->validateFields($title, $year, $price, $description, $brand, $model, $color, $km, $hp);
 		$this->validateImages();
 		
-		var_dump($this->errors);
+		
 		if(empty($this->errors)){
 			$this->setPictures($this->manageFiles());			
 		
 			PostDao::updatePost($title, $year, $price, $description, $postId, $brand, $model, $color, $km, $hp);
+			if(!$this->isEmptyFile && empty($this->isValidFile)) {
 			PostDao::addPictures($this->getPictures(), $this->postId);
+			}
 			
 			}
 		}
@@ -166,6 +189,27 @@ class UpdateFileController extends PostController
 		if(!is_numeric($price))
 		{
 			$this->errors[11] = 'Price  field must have  numeric value';
+		}
+	} 
+	
+	public function validateImages()
+	{
+		if(isset($_FILES['file'])) {
+			$filesCount = count($_FILES['file']['tmp_name']);
+			for($i = 0; $i < $filesCount ; $i++)
+			{
+				$filetype = substr( $_FILES['file']['type'][$i], 0, 6 );
+				if($filetype == "") {
+					$this->isEmptyFile = true;
+				}else {
+					$this->isEmptyFile = false;
+				}
+					
+				if($filetype != 'image/') {
+					$this->isValidFile[] = "Can upload images only";
+					
+				}
+			}
 		}
 	}
 	
