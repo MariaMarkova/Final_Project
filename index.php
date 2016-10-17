@@ -1,13 +1,18 @@
 <?php
 
 use View\ErrorView;
+use Exceptions\ExceptionHandler;
+
 
 require_once __DIR__ . '/autoload.php';
-//require_once __DIR__ . '/config.php';
+
+
+
+set_error_handler([ExceptionHandler::class, 'handleError']);
+set_exception_handler([ExceptionHandler::class, 'handleException']);
 
 $fileNotFound = false;
 
-//print_r($_GET);
 
 $controllerName = isset($_GET['controller']) ? $_GET['controller'] : 'login';
 $methodName = isset($_GET['action']) ? $_GET['action'] : 'showLoginForm';
