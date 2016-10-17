@@ -8,12 +8,12 @@ document.addEventListener('DOMContentLoaded', function() {
 		//console.log('response   --->' + response);		
 		data = JSON.parse(response);		
 		//console.log(data[0]['email']);		
-		displayDays(data);
+		displayUSers(data);
 	});
 
 }, false);
 
-function displayDays(data) {
+function displayUSers(data) {
 	var tbody = document.getElementsByTagName('tbody')[0];
 		
 	for (var i = 0; i < data.length; i++) {

@@ -121,12 +121,11 @@ class BaseView
 		$loadPage->renderExternals();
 		
 		echo '<!-- Custom CSS -->
- 				    <link href="assets/css/search.css" rel="stylesheet">
 					<link href="assets/css/newSearch.css" rel="stylesheet">
 				<!-- AJAX -->
  				    <script type="text/javascript" src="assets/js/ajax.js"></script>
 				<!-- Custom JS -->
- 				    <script type="text/javascript" src="assets/js/search.js"></script>
+ 				    <script type="text/javascript" src="assets/js/newSearch.js"></script>
 			  ';
 		
 		//TODO admin name
@@ -136,22 +135,13 @@ class BaseView
 		echo ' <div id="page-wrapper">
 				
 				            <div class="container-fluid">
-								<h3>Welcome</h3>
-								
-								<div class="search" >
-								    <form id="form_search" class="form-search" method="post" action="" >
-								        <div class="input-append">
-											
-								       		<input type="text" name="input-search" id="input-search" class="search-query" placeholder="Search..." required/>
-								            <button type="button" id="btn-search" class="btn btn-primary">Search</button>
-										</div>
-								    </form>
-								</div>	
+								<h3>Search</h3>
 				
 								<div id="newSearch">
 								
 									<form id="f" method="post" action="">				
 										
+										<p id="error" class="error hidden">Invalid parameters. Please, check your input.</p>
 										<label for="brand">Brand</label>
 								 		<input type ="text" name="brand" id="brand" />									
 								
@@ -183,7 +173,31 @@ class BaseView
 								</div>				
 				            </div>
 				
-							<p id="result-search"></p>';
+							<div class="col-lg-6">
+			                       <h3>Cars</h3>
+			                       <div class="table-responsive">
+			                            <table  id="result-search" class="table table-bordered table-hover table-striped">
+			                                <thead>
+			                                   <tr>
+												<th>#</th>
+			                                    <th>Brand</th>                                        
+			                                    <th>Model</th>
+												<th>Color</th>                                        
+			                                    <th>Price</th>
+												<th>Kilometres</th>                                        
+			                                    <th>Hourse Powers</th>
+												<th>Year</th>  
+												<th>Link</th> 
+			                                   </tr>
+			                               </thead>
+			                               <tbody>
+							
+			                               </tbody>
+			                           </table>
+									   <p id="no-match" class="error hidden">There is nothing to show.</p>
+			                       </div>
+	                   		 </div>
+									';
 		
 		$loadPage->renderAssets();
 		

@@ -37,3 +37,10 @@ SELECT title_post, year_of_manufacture, price, description_post FROM posts;
 #insert test subject into device
 insert into devices (device, email, name) values ('5234SD123', 'krasi@krasi.com', 'Krasimir Stoev');
 
+
+select url_pic from pictures where id_post = 1;
+
+SELECT id_post, brand, model, hp, year_of_manufacture AS year, km, color, price, description_post AS description 
+				FROM posts ORDER BY id_post desc;
+                
+SELECT brand, model, color, km, hp, year_of_manufacture, price FROM posts WHERE (year_of_manufacture BETWEEN '1990' AND '2005');

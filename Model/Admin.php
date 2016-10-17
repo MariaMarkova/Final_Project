@@ -13,21 +13,36 @@ class Admin
     private $telephone;
     private $username;
     
-    public function __construct($username, $pass) 
+    public function __construct($username) 
     {        
-    	$userData = AdminDao::getUser($username);    	
-    	$md5Pass = md5($pass);
     	
-    	if (!empty($userData[0]) && $userData[0]['password'] == $md5Pass) {
-    		
+    	$userData = AdminDao::getUser($username);    	
+    	
+    	if(!empty($userData)) {
+    		$this->username =  $userData[0]['username'];
     		$this->first_name = $userData[0]['first_name'];
     		$this->last_name = $userData[0]['last_name'];
     		$this->password = $userData[0]['password'];
     		$this->email = $userData[0]['email'];
     		$this->telephone = $userData[0]['telephone'];
-    		$this->username = $userData[0]['username'];
     		$this->id_admin = $userData[0]['id_admin'];
+    	} 
+    	
+    }
+    
+    public function checkUserExists(){
+    	return !empty($this->username);
+    }
+    
+    public function checkCredentials($password){
+    	$md5Pass = md5($password);
+    	 
+    	if (!empty($this->username) && $this->password == $md5Pass) {
+    		return true;
+
     	}
+    	
+    	return false;
     }
         
     public function getFirstName(){
@@ -76,11 +91,6 @@ class Admin
     
     public function setIdAdmin($id_admin){
     	$this->id_admin = $id_admin;
-    }
-    
-    public function checkPass()
-    {
-    	return isset($this->username);
     }
     
     public function updateDB($firstName, $lastName, $username, $email, $telephone, $idAdmin){
