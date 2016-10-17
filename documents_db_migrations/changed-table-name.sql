@@ -44,3 +44,26 @@ SELECT id_post, brand, model, hp, year_of_manufacture AS year, km, color, price,
 				FROM posts ORDER BY id_post desc;
                 
 SELECT brand, model, color, km, hp, year_of_manufacture, price FROM posts WHERE (year_of_manufacture BETWEEN '1990' AND '2005');
+
+
+CREATE TABLE `reserves` (
+  `id_reserve` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) NOT NULL,
+  `telepfone` VARCHAR(255) NOT NULL,
+  `email` VARCHAR(255) NOT NULL,
+  `data` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`id_reserve`),
+  
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+ALTER TABLE reserves ADD id_post INT UNSIGNED NOT NULL;
+
+ALTER TABLE reserves ADD CONSTRAINT `id_post_fkey` FOREIGN KEY (id_post) REFERENCES posts (id_post);
+
+ALTER TABLE reserves ADD msg varchar(255) not null;
+
+select * from posts;
+
+ALTER TABLE posts ADD reserved bool default false not null;

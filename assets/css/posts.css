@@ -55,7 +55,8 @@ p {
 	background:#222;
 	padding:15px;
 	border-radius:7%;
-	position:absolute;
+	/*position:absolute;*/
+	display: inline-block;
 	left:-200px;
 	top:71px;
 	width:100px;
