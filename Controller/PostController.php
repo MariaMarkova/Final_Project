@@ -40,7 +40,7 @@ class PostController
 			$this->validateImages();
 			
 			
-			var_dump($this->errors);
+			//var_dump($this->errors);
 			if(empty($this->errors)){
 				
 			$post = new Post($title, $year, $price, $description, $brand, $model, $color, $km, $hp);
@@ -49,7 +49,7 @@ class PostController
 			$resultPost = PostDao::addPost($post);
 			$resultPic = PostDao::addPictures($post->getPictures(), $post->getId());
 			//send notification funct here
-			//makePush();
+			makePush();
 			}
 			
 		}
