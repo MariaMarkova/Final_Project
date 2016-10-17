@@ -4,6 +4,7 @@ if(!isset($_SESSION)){
     session_start();
 }
 
+require_once __DIR__ . '/../googleLogin/config.php';
 use View\LoginView;
 use Model\Admin;
 use Model\ValidateCredentials;
@@ -13,7 +14,7 @@ class LoginController
 	public function showLoginForm()
 	{
 		$view = new LoginView();
-		$view->renderLoginForm();
+		$view->renderLoginForm();	
 	}
 
 	public function login()
@@ -31,12 +32,13 @@ class LoginController
 			if ( !$validate->validate($username, $pass) ){
 				$result['validUser'] = false;
 			} else {
-		
-				$admin = new Admin($username, $pass);
 				
-				if ($admin->checkPass() ){
+				$admin = new Admin($username);
+				
+				if ($admin->checkCredentials($pass) ){
 					$_SESSION['admin'] = $admin;
 					$result['validUser'] = true;
+					
 				} else {
 					$result['validUser'] = false;
 				}				
@@ -48,9 +50,21 @@ class LoginController
 	}
 	
 	public function logOut(){
-		session_destroy();
+	
+		if(isset($_SESSION["user_id"]))
+		{
+			session_destroy();
+// 			unset($_SESSION["user_id"]);
+// 			unset($_SESSION);
+			header("location:https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=". urlencode(HOST_URL));
 		
-		$this->showLoginForm();
+		}
+		else
+		{
+			session_destroy();
+			$this->showLoginForm();
+		}
+		
 	}
 	
 }

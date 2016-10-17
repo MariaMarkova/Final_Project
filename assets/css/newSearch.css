@@ -1,7 +1,11 @@
 @CHARSET "UTF-8";
 
+.container-fluid {
+	display: inline-block;
+}
 #newSearch {
-	padding-top: 50px;	
+	display: inline-block;
+	padding-top: 0px;	
 }
 
 .error {
@@ -34,3 +38,6 @@ label {
 button {
 	display: block;
 }
+
+.hidden {
+    display: none; }

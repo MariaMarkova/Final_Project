@@ -167,10 +167,10 @@ function captureForm(e) {
 			
 			data = JSON.parse(response);
 			
-			if ( ) {
-				
+			if (response  = 'failure' ) {
+				//izkarai saobshtenie
 			}else{
-				window.location.href = 'index.php?controller=base&action=showBaseView';
+				window.location.href = 'index.php?controller=ShowAll&action=ShowAll';
 			}
 			//console.log(data);	
 			
