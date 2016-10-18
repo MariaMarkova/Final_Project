@@ -193,7 +193,9 @@ function captureForm(e) {
 	if(isNumPrice && isNumYear && isNumHp &&isNumKm && resultPrice &&  resultYear &&  resultHp &&  resultKm && 
 			resultBrand && resultTitle && resultModel && resultColor && isValidYear && resultFileContent 
 			&& validUpload.length == 0) {
-		document.getElementById('suc').style.display = "block";
+	
+
+		//document.getElementById('suc').style.display = "block";
 	}
 }
 	

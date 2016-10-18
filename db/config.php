@@ -1,11 +1,10 @@
 <?php
 define("DB_HOST", 'localhost');
 
-define("DB_NAME", 'test');
 
-define("DB_NAME", 'prevozvach');
+define("DB_NAME", 'test');
 define("DB_USER", 'root');
-define("DB_PASS", '2224');
+define("DB_PASS", '');
 
 // set site path and redirect URL
 /* make sure the url end with a trailing slash */

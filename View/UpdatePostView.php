@@ -63,10 +63,7 @@ class UpdatePostView {
  		$loadPage->renderNav();
  		
  		echo ' <div id="form-div">
- 				
- 					<h1 id="suc" class="sucess">Update is sucessfull</h1>
 					<form enctype="multipart/form-data" method="post"  action="">
- 					
 					<p id="error_title_update" class="error">This field is required!</p> 
 							<label for="title-update">Title</label>
 						 <input type ="text" name="title" id="title-update" value ="'.htmlentities($this->title, ENT_QUOTES, 'UTF-8') . '">

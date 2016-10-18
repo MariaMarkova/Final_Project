@@ -8,8 +8,8 @@ require_once __DIR__ . '/autoload.php';
 
 
 
-set_error_handler([ExceptionHandler::class, 'handleError']);
-set_exception_handler([ExceptionHandler::class, 'handleException']);
+  set_error_handler([ExceptionHandler::class, 'handleError']);
+set_exception_handler([ExceptionHandler::class, 'handleException']);  
 
 $fileNotFound = false;
 

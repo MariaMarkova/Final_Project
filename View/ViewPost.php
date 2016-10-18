@@ -59,6 +59,8 @@ class ViewPost
 				<!--JS -->
 					<script src="assets/js/popup.js"></script> 	
 				<script src="assets/js/reserveValidation.js"></script> 
+				<script src="assets/js/deletePost.js"></script> 
+				
 					<script src="assets/js/ajax.js"></script> ';
 		
 		
@@ -67,7 +69,11 @@ class ViewPost
 		$loadPage->renderNav();
 		echo '	<div class="post-but-div">
 				<a  href="index.php?controller=UpdateFile&action=showUpdate&id='.$_GET['id'] . '"  class="post-but-a" >Update Post</a>
-				</div>';
+					
+						
+				</div>
+						<button id="delete-button" type="submit" >Delete</button>';
+		
 		echo '<!-- Body Starts Here -->
 					<body id="body" style="overflow:scroll;">
 					<div id="abc">
@@ -76,7 +82,7 @@ class ViewPost
 					<!-- Contact Us Form -->
 					<form action="#" id="form" method="post" name="form">
 					<img id="close" src="images/3.png" onclick ="div_hide()">
-					<h2>Contact Us</h2>
+					<h2>Reserve</h2>
 					<hr>
 					<p id="required" class="error">All fields are required!</p> 
 					<input id="name" name="name" placeholder="Name" type="text">
@@ -102,8 +108,10 @@ class ViewPost
 					</body>';
 		
 		echo '
+ 					<h2 id="delete-sucess" class="">Delete is sucessfull</h2>
+				
 				        <div id="page-wrapper">
-		
+				
 				            <div class="container-fluid">
 		
 								<div class="wraper-post-info">

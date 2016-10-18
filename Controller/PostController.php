@@ -49,7 +49,7 @@ class PostController
 			$resultPost = PostDao::addPost($post);
 			$resultPic = PostDao::addPictures($post->getPictures(), $post->getId());
 			//send notification funct here
-			makePush();
+			//makePush();
 			}
 			
 		}
@@ -76,14 +76,16 @@ class PostController
 		{
 			$fileName = str_replace(' ' , '_' , $_FILES['file']['name'][$i]);
 			$path_parts = pathinfo($_FILES["file"]["name"][$i]);
+				
 			$extension = $path_parts['extension'];
+				
+			$realName = iconv("utf-8","cp1251" ,substr(uniqid(),2,5) . 
+					substr(str_shuffle(str_repeat("0123456789abcdefghijklmnopqrstuvwxyz", 5)), 0, 3). "." . 
+					$extension) ;
 			$ts = time();
-			
-			//funkciq do tochka zima imeto i mu slaga timestamp
 		
-			$dest =   'assets/images/'.  $fileName ;
-			$path = 'assets/images/' . $fileName;	
-			$images[] = $path;
+			$dest =   'assets/images/'.   $realName;
+			$images[] = $dest;
 			$currentFile =  $_FILES['file']['tmp_name'][$i];
 		
 			move_uploaded_file($currentFile, $dest);
@@ -188,9 +190,5 @@ class PostController
 }
 
 
-/* $control = new PostController();
 
-$control->makePost();
-
-var_dump($control->getErrors()); */
 

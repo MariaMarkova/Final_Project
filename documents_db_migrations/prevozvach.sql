@@ -77,3 +77,15 @@ ALTER TABLE posts ADD CONSTRAINT `id_user_fk` FOREIGN KEY (id_user) REFERENCES u
 ALTER TABLE pictures ADD CONSTRAINT `id_post_fk` FOREIGN KEY (id_post) REFERENCES posts (id_post);
 
 
+ALTER TABLE pictures
+ADD CONSTRAINT id_post_fk
+FOREIGN KEY (id_post)
+REFERENCES posts(id_post)
+ ON DELETE CASCADE
+ 
+ 
+ ALTER TABLE pictures
+ADD CONSTRAINT id_post_fkey
+FOREIGN KEY (id_post)
+REFERENCES posts(id_post)
+ ON DELETE CASCADE
