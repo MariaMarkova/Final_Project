@@ -80,20 +80,22 @@ class HeaderAndNavigation
 	}
 	
 	public function renderNav(){
+		$action = $_GET['action'];
+		
 		echo '<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
 				            <div class="collapse navbar-collapse navbar-ex1-collapse">
 				                <ul class="nav navbar-nav side-nav">
 				                    
-				                    <li class="active">
+				                    <li ' . (($action=='showBaseView') ? 'class="active"' : '') . '>
 				                        <a href="index.php?controller=base&action=showBaseView"><i class="fa fa-fw fa-home"></i> Home</a>
 				                    </li>
-				                    <li>
+				                    <li ' . (($action=='MakePost') ? 'class="active"' : '') . '>
 				                        <a href="index.php?controller=Post&action=MakePost"><i class="fa fa-fw fa-edit"></i> Add Post</a>
 				                    </li>
-				                    <li>
+				                    <li ' . (($action=='ShowAll') ? 'class="active"' : '') . '>
 				                        <a href="index.php?controller=ShowAll&action=ShowAll"><i class="fa fa-fw fa-desktop"></i> View Posts</a>
 				                    </li>
-								    <li>
+								    <li ' . (($action=='showUsersInfo') ? 'class="active"' : '') . '>
 				                        <a href="index.php?controller=device&action=showUsersInfo"><i class="fa fa-fw fa-users"></i> Users</a>
 				                    </li>
 				                </ul>

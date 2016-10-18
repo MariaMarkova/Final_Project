@@ -2,6 +2,7 @@
 
 .container-fluid {
 	display: inline-block;
+	margin-left: 20px;
 }
 #newSearch {
 	display: inline-block;

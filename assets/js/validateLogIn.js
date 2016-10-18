@@ -32,8 +32,8 @@ function captureForm(e) {
 		document.getElementById('username').style.borderColor = '';
 		document.getElementById('pass').style.borderColor = '';
 		
-		Ajax.request('POST', 'Controller/logIn.php', true, function (response) {
-			console.log('response   --->' + response);
+		Ajax.request('POST', 'Handler/logIn.php', true, function (response) {
+			//console.log('response   --->' + response);
 			
 			data = JSON.parse(response);
 			

@@ -83,7 +83,7 @@ function captureForm(e) {
 		document.getElementById('error_tel').className = 'error hidden';
 		document.getElementById('error_email').className = 'error hidden';
 		
-		Ajax.request('POST', 'Controller/changePersonalInfo.php', true, function (response) {
+		Ajax.request('POST', 'Handler/changePersonalInfo.php', true, function (response) {
 			
 			window.location.href = 'index.php?controller=profile&action=renderSuccessulChange';
 			

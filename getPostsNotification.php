@@ -19,13 +19,11 @@ if(isset($_GET['device'])){
 	
 		$pictures = [];
 		for($j = 0; $j < $countOfPics; $j++){
-			//$path = str_replace('\/', DIRECTORY_SEPARATOR, $pics[$j]['url_pic']);
-			//$pictures[] = __DIR__ . DIRECTORY_SEPARATOR . $path;
 			$pictures[] = $pics[$j]['url_pic'];
 		}
-		//$result[$i]['urls'] = getPicForPost($id_post);
+		
 		$result[$i]['urls'] = $pictures;
-		//$j[$i] = $result[$i];
+		
 	}
 	
 	//here is the msg for android
@@ -38,7 +36,4 @@ if(isset($_GET['device'])){
 	echo json_encode($msg);
 }
 
-//wrong!!!
-//$jsonMsg = json_encode($msg);
-//$msg_status = send_notification($token, $jsonMsg);
 

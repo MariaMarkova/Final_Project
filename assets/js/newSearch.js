@@ -50,7 +50,7 @@ function captureForm(e) {
 	}else {
 		console.log('osyshtestvi searcha');
 		
-		Ajax.request('POST', 'Controller/newSearch.php', true, function (response) {
+		Ajax.request('POST', 'Handler/newSearch.php', true, function (response) {
 			//console.log('response   --->' + response);			
 			data= JSON.parse(response);			
 			console.log(data);	

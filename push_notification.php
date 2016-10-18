@@ -43,52 +43,64 @@ function send_notification ($tokens, $msg) {
 
 function getDevices(){
 	//pull tokens from db and save them in array
-	$connection = DBConnection::getInstance();
-	
-	$sql = 'SELECT device FROM devices';
-	$result = $connection->prepare($sql);
-	$result->execute();
-	
-	$tokens = [];
-	
-	if ($result->rowCount() > 0){
-		$r = $result->fetchAll(PDO::FETCH_ASSOC);
-	
-		foreach( $r as $row ) {
-			$tokens[] = $row['device'];
+	try{
+		$connection = DBConnection::getInstance();
+		
+		$sql = 'SELECT device FROM devices';
+		$result = $connection->prepare($sql);
+		$result->execute();
+		
+		$tokens = [];
+		
+		if ($result->rowCount() > 0){
+			$r = $result->fetchAll(PDO::FETCH_ASSOC);
+		
+			foreach( $r as $row ) {
+				$tokens[] = $row['device'];
+			}
 		}
-	}
+		
+		return $tokens;
+	}catch (PDOException $e){}
 	
-	return $tokens;
 }
 
 function getAllPostInfo(){
 	//get all posts from db
-	$connection = DBConnection::getInstance();
-	
-	$query = 'SELECT id_post, brand, model, hp, year_of_manufacture AS year, km, color, price, description_post AS description 
+	try{
+		$connection = DBConnection::getInstance();
+		
+		$query = 'SELECT id_post, brand, model, hp, year_of_manufacture AS year, km, color, price, description_post AS description
 				FROM posts ORDER BY id_post DESC';
-	$stm = $connection->prepare($query);
-	$stm->execute(array());
-	return $stm->fetchAll(PDO::FETCH_ASSOC);	
+		$stm = $connection->prepare($query);
+		$stm->execute(array());
+		return $stm->fetchAll(PDO::FETCH_ASSOC);
+	}catch (PDOException $e){}
+	
 }
 
 function getPicForPost($id_post){
-	$connection = DBConnection::getInstance();
-	$query = 'SELECT url_pic FROM pictures WHERE id_post = (?)';
-	$stm = $connection->prepare($query);
-	$stm->execute(array($id_post));
-	return $stm->fetchAll(PDO::FETCH_ASSOC);
+	try{
+		$connection = DBConnection::getInstance();
+		$query = 'SELECT url_pic FROM pictures WHERE id_post = (?)';
+		$stm = $connection->prepare($query);
+		$stm->execute(array($id_post));
+		return $stm->fetchAll(PDO::FETCH_ASSOC);
+	}catch (PDOException $e){}
+	
 }
 
 function getInfoAdmin(){
 	//get info admin from db
-	$connection = DBConnection::getInstance();
+	try{
+		$connection = DBConnection::getInstance();
+		
+		$adminInfo = 'SELECT concat(first_name, " " , last_name) as `name`, telephone as phone FROM admins;';
+		$stm = $connection->prepare($adminInfo);
+		$stm->execute(array());
+		return $stm->fetch(PDO::FETCH_ASSOC);
+	}catch (PDOException $e){}
 	
-	$adminInfo = 'SELECT concat(first_name, " " , last_name) as `name`, telephone as phone FROM admins;';
-	$stm = $connection->prepare($adminInfo);
-	$stm->execute(array());
-	return $stm->fetch(PDO::FETCH_ASSOC);
 }
 
 	

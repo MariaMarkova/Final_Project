@@ -28,9 +28,7 @@ if (isset($data['device'])) {
 
 		$resultFromInsert = $statement->execute(array($token, $email, $name, $token));
 
-	} catch (PDOException $e){
-		echo $e->getMessage();
-	}
+	} catch (PDOException $e){}
 }
 
 if ($resultFromInsert) {
@@ -47,30 +45,4 @@ if ($resultFromInsert) {
 }
 
 echo json_encode($msg);
-
-//$msgJson = json_encode($msg);
-
-//send response to android
-//$msg_status = send_notification($token, $msgJson);
-
-	
-//from youtube video
-// if (isset($_POST['device'])) {
-// 	try {
-// 		$token = $_POST['device'];
-// 		$email = $_POST['email'];
-// 		$name = $_POST['name'];
-		
-// 		$connection = DBConnection::getInstance();
-		
-// 		$query = 'INSERT INTO devices VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE device = (?)';
-		
-// 		$statement = $connection->prepare($query);
-		
-// 		$resultFromInsert = $statement->execute(array($token, $email, $name, $token));
-		
-// 	} catch (PDOException $e){
-// 		echo $e->getMessage();
-// 	}
-// }
 

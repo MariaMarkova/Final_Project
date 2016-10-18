@@ -4,7 +4,7 @@
 
 document.addEventListener('DOMContentLoaded', function() {
 	
-	Ajax.request('GET', 'Controller/device.php', true, function (response) {
+	Ajax.request('GET', 'Handler/device.php', true, function (response) {
 		//console.log('response   --->' + response);		
 		data = JSON.parse(response);		
 		//console.log(data[0]['email']);		
