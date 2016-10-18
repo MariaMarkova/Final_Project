@@ -1,14 +1,9 @@
 <?php
-
-
-
 use Dao\PostDao;
 
 require_once '../autoload.php';
 
-
 session_start();
-$errors = [];
 $currentPostId = $_SESSION['showPostId'];
 
 $reservedValue = PostDao::getReserved($currentPostId);

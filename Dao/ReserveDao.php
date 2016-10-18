@@ -26,7 +26,7 @@ class ReserveDao {
 			]);
 				
 		} catch (PDOException $e) {
-			echo  $e->getMessage();
+			
 		}
 	}
 	
@@ -44,7 +44,7 @@ class ReserveDao {
 			]);
 			$result = $stm->fetch(\PDO::FETCH_ASSOC);
 		} catch (PDOException $e) {
-			echo  $e->getMessage();
+			
 		}
 		return $result;
 	}

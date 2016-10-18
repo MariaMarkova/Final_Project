@@ -184,7 +184,7 @@ function captureForm(e) {
 		console.log('dolo sam');
 		
 		
-		Ajax.request('POST', 'Controller/handleValidatePost.php', true, function (response) {
+		Ajax.request('POST', 'Handler/handleValidatePost.php', true, function (response) {
 			console.log('response   --->' + response);
 			
 			data = JSON.parse(response);

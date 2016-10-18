@@ -42,7 +42,6 @@ class PostDao
 				
 			
 		} catch (PDOException $e) {
-			echo  $e->getMessage();
 		}
 		
 	
@@ -83,7 +82,6 @@ class PostDao
 		
 				
 		} catch (\PDOException $e) {
-			echo  $e->getMessage();
 		}
 	}
 	
@@ -104,7 +102,6 @@ class PostDao
 				]);
 			}
 		}catch (\PDOException $e) {
-			echo  $e->getMessage();
 		}
 	}
 	
@@ -122,7 +119,6 @@ class PostDao
 			$result = $stm->fetchAll(\PDO::FETCH_ASSOC);
 		}catch (\PDOException $e)
 		{
-			echo $e->getMessage();
 		}
 		return $result;
 	}
@@ -140,7 +136,6 @@ class PostDao
 	]);
 		}catch (\PDOException $e)
 		{
-			echo $e->getMessage();
 		}
 		return $sucess;
 	}
@@ -162,7 +157,6 @@ class PostDao
 		$result = $stm->fetch(\PDO::FETCH_ASSOC);
 		}catch (\PDOException $e)
 		{
-			echo $e->getMessage();
 		}
 		return $result;
 	}
@@ -182,7 +176,6 @@ class PostDao
 			
 		}catch(\PDOException $e)
 		{
-			echo $e->getMessage();
 		}
 		return $result;
 	}
@@ -201,7 +194,6 @@ class PostDao
 			$result = $stm->fetch(\PDO::FETCH_ASSOC);
 		}catch (\PDOException $e)
 		{
-			echo $e->getMessage();
 		}
 		return $result;
 	}
@@ -218,7 +210,6 @@ class PostDao
 			$result = $stm->fetchAll(\PDO::FETCH_ASSOC);
 		}catch (\PDOException $e)
 		{
-			echo $e->getMessage();
 		}
 		return $result;
 	}
@@ -238,7 +229,6 @@ class PostDao
 			]);
 				
 		} catch (\PDOException $e) {
-			echo  $e->getMessage();
 		}
 	}
 	
@@ -255,10 +245,29 @@ class PostDao
 		]);
 		$result = $stm->fetch(\PDO::FETCH_ASSOC);
 		} catch (\PDOException $e) {
-			echo  $e->getMessage();
 		}
 		
 		return $result;
 	}
+	
+	 public static function deletePost($postId)
+		{
+		try
+		{
+			$connection = DBConnection::getInstance();
+			$deleteQuery = "DELETE   FROM posts
+								WHERE id_post = :id ;";
+			$stm = $connection->prepare($deleteQuery);
+			$sucess = $stm->execute([
+					'id' => $postId
+			]);
+			return $sucess;
+			
+		} catch (\PDOException $e) {
+			
+		}
+	
+	}
+	
 	
 }

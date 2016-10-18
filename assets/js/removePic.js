@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			 console.log(identifier);
 			 if (typeof(identifier) != "undefined" && flag){
 				
-				 Ajax.request('POST', 'Controller/handleAjaxRequst.php', true, function (response) {
+				 Ajax.request('POST', 'Handler/handleAjaxRequst.php', true, function (response) {
 						
 					 console.log('response   --->' + response);
 						data= JSON.parse(response);

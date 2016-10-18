@@ -93,3 +93,16 @@ table {
 	margin-right:20px;
 	width:60%;
 }
+
+#delete-sucess {
+	display:block;
+	margin-left:15% !important;
+	background:none;
+	display:none;
+	color:red;
+}
+
+img:hover { 
+	width:500px;
+	height:300px;
+}

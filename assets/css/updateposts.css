@@ -7,7 +7,7 @@ label{
 
 #form-div {
 	margin-left:40%;
-	margin-top:15%;
+	margin-top:3%;
 }
 
 #send-button {
@@ -38,4 +38,7 @@ label{
 	margin:25px;
 	  height:170px;
 	width:200px;
+}
+img:hover { 
+    border:2px solid red;
 }
