@@ -10,7 +10,7 @@ class DeviceDao
 	{
 		try {
 			$connection = DBConnection::getInstance();
-			$getAllDevices = 'SELECT name, email FROM devices';
+			$getAllDevices = 'SELECT name, email FROM users';
 			
 			$statement = $connection->prepare($getAllDevices);
 			

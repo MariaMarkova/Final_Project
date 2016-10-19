@@ -11,8 +11,8 @@ define('PROJECT_NAME', 'AvtovozBG');
 define('DB_DRIVER', 'mysql');
 define('DB_SERVER', 'localhost');
 define('DB_SERVER_USERNAME', 'root');
-define('DB_SERVER_PASSWORD', '');
-define('DB_DATABASE', 'test');
+define('DB_SERVER_PASSWORD', '2224');
+define('DB_DATABASE', 'prevozvach');
 
 $dboptions = array(
     PDO::ATTR_PERSISTENT => FALSE,

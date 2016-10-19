@@ -49,7 +49,7 @@ class PostController
 			$resultPost = PostDao::addPost($post);
 			$resultPic = PostDao::addPictures($post->getPictures(), $post->getId());
 			//send notification funct here
-			//makePush();
+			makePush();
 			}
 			
 		}
@@ -77,7 +77,8 @@ class PostController
 			$fileName = str_replace(' ' , '_' , $_FILES['file']['name'][$i]);
 			$path_parts = pathinfo($_FILES["file"]["name"][$i]);
 				
-			$extension = $path_parts['extension'];
+			//$extension = $path_parts['extension'];
+			$extension = isset($path_parts['extension']) ? $path_parts['extension'] : null;
 				
 			$realName = iconv("utf-8","cp1251" ,substr(uniqid(),2,5) . 
 					substr(str_shuffle(str_repeat("0123456789abcdefghijklmnopqrstuvwxyz", 5)), 0, 3). "." . 

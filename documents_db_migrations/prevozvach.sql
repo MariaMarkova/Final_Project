@@ -42,6 +42,7 @@ select * from admins;
 select * from posts;
 select * from pictures;
 select * from devices;
+select * from reserves;
 
 SELECT concat(first_name, ' ', last_name) as `name`, telephone as phone FROM admins;
 #do not execute this changes
@@ -76,16 +77,18 @@ ALTER TABLE posts ADD CONSTRAINT `id_user_fk` FOREIGN KEY (id_user) REFERENCES u
 #add fk id_user
 ALTER TABLE pictures ADD CONSTRAINT `id_post_fk` FOREIGN KEY (id_post) REFERENCES posts (id_post);
 
+alter table pictures DROP FOREIGN KEY `id_post_fk`;
 
 ALTER TABLE pictures
 ADD CONSTRAINT id_post_fk
 FOREIGN KEY (id_post)
 REFERENCES posts(id_post)
- ON DELETE CASCADE
+ ON DELETE CASCADE;
  
- 
- ALTER TABLE pictures
+alter table reserves DROP FOREIGN KEY `id_post_fkey`;
+
+ALTER TABLE reserves
 ADD CONSTRAINT id_post_fkey
 FOREIGN KEY (id_post)
 REFERENCES posts(id_post)
- ON DELETE CASCADE
+ ON DELETE CASCADE;

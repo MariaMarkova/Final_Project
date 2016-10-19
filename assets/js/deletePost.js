@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
 							document.getElementById('delete-sucess').style.display = "block";
 							
 							setTimeout(function(){
-								 window.location.assign("index.php?controller=ShowAll&action=ShowAll")
+								 window.location.href = "index.php?controller=ShowAll&action=ShowAll";
 								
 							}, 800);							
 						} else {

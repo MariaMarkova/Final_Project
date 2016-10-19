@@ -67,3 +67,24 @@ ALTER TABLE reserves ADD msg varchar(255) not null;
 select * from posts;
 
 ALTER TABLE posts ADD reserved bool default false not null;
+
+#create table 'users'
+CREATE TABLE `prevozvach`.`users` (
+  `id_user` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) ,  
+  `email` VARCHAR(255) ,
+  PRIMARY KEY (`id_user`),
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+ALTER TABLE devices ADD id_user INT UNSIGNED NOT NULL;
+ALTER TABLE devices MODIFY COLUMN `id_user` INT UNSIGNED NOT NULL;
+
+ALTER TABLE devices ADD CONSTRAINT `id_user_k` FOREIGN KEY (id_user) REFERENCES users (id_user);
+
+select * from devices;
+show create table devices;
+
+#insert into users (email, name) values ( 'Maria Markova', 'maria.ivanova.markova@gmail.com');
+
