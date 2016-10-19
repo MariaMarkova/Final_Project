@@ -83,8 +83,10 @@ ALTER TABLE devices MODIFY COLUMN `id_user` INT UNSIGNED NOT NULL;
 
 ALTER TABLE devices ADD CONSTRAINT `id_user_k` FOREIGN KEY (id_user) REFERENCES users (id_user);
 
+select * from users;
 select * from devices;
 show create table devices;
 
 #insert into users (email, name) values ( 'Maria Markova', 'maria.ivanova.markova@gmail.com');
 
+#SELECT id_user, email FROM users where email LIKE 'maria.ivanova.markova@gmail.com';

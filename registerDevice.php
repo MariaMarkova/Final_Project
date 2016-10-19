@@ -1,5 +1,6 @@
 <?php
 require_once 'autoload.php';
+require_once 'func.php';
 use db\DBConnection;
 
 $postdata = file_get_contents("php://input");
@@ -22,28 +23,9 @@ if (isset($data['device'])) {
 
 		$connection = DBConnection::getInstance();
 		
-		$selectId = 'SELECT id_user FROM users WHERE email LIKE (?)';
-		$statement = $connection->prepare($selectId);
-		$resultFromISelect = $statement->execute(array($email));
-		
-		$userId;
-		
-		if($resultFromISelect->rowCount() > 0){						
-			$userId = $resultFromISelect[0]['id_user'];
-		} else {
-			$insert = 'INSERT INTO users (email, name) VALUES (?, ?)';
-			$statementInsert = $connection->prepare($insert);
-			$resultInsetIntoUsers = $statement->execute(array($email, $name));
-			$userId = $resultInsetIntoUsers->lastInsertId();
-		}
-		
-		$query = 'INSERT INTO devices (device, id_user) VALUES (?, ?) ON DUPLICATE KEY UPDATE device = (?)';
+		$query = 'INSERT INTO devices (device, email, name) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE device = (?)';
 		$statement = $connection->prepare($query);
-		$resultFromInsert = $statement->execute(array($token,$userId));
-		
-		//$query = 'INSERT INTO devices (device, email, name) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE device = (?)';
-// 		$statement = $connection->prepare($query);
-// 		$resultFromInsert = $statement->execute(array($token, $email, $name, $token));
+		$resultFromInsert = $statement->execute(array($token, $email, $name, $token));
 
 	} catch (PDOException $e){}
 }

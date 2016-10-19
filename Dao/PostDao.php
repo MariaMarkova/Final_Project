@@ -38,10 +38,10 @@ class PostDao
 					'hp' => $post->getHp()
 			]);
 			$postId = $post->setId($connection->lastInsertId());
-		
 				
 			
-		} catch (PDOException $e) {
+		} catch (\PDOException $e) {
+			echo "OOps,something went wrong";
 		}
 		
 	
